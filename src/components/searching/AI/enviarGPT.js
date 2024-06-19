@@ -1,10 +1,5 @@
 import OpenAI from "openai";
 
-const openai = new OpenAI({
-    organization: 'org-S8PHGaGg3FO6MQLRtJjzkzOD',
-    apiKey: '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',
-    dangerouslyAllowBrowser: true
-  });
 
 
 const enviarGPT =  async (datos, promp) => {
