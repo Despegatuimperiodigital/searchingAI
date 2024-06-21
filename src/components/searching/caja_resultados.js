@@ -15,7 +15,7 @@ const NextArrow = ({ className, style, onClick, visible }) => (
             position: 'absolute',
             color: '#fd4a5c',
             transform: 'translateY(-50%)',
-            zIndex: '1',
+            zIndex: '1', 
             right: 0,
             top: '50%',
         }}

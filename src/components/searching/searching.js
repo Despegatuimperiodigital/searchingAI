@@ -5,7 +5,8 @@ import data from './data/data.json'
 import CircularProgress from '@mui/material/CircularProgress';
 import ResultsBox from './caja_resultados';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-
+import './estilos.css';
+import '../../fonts.css';
 
 const SearchBar = () => {
   const [searchText, setSearchText] = useState("");  // Estado para almacenar el texto del formulario
@@ -32,18 +33,18 @@ const SearchBar = () => {
 
   const handleInputChange = (event) => {
     setSearchText(event.target.value);
-    
+
   };
-  
+
   const activarSubsidio = () => {
 
   }
 
   const handleAlignment = (event, newAlignment) => {
-    
+
     setSelected(newAlignment);
     var x = 0
-   
+
   };
 
   const filteredProperties = results.filter(property => {
@@ -252,7 +253,7 @@ const SearchBar = () => {
 
     //   const existingSearches = await fetchBusquedasGuardadas();
     //   const similarQuery = checkSimilarity(searchText, existingSearches.map(item => item.query));
-  
+
     //   if (similarQuery) {
     //     setResults(formulario.propiedades); // Asume que los resultados están almacenados de esta manera
     //     setMensaje("Resultados obtenidos del cache.");
@@ -266,7 +267,7 @@ const SearchBar = () => {
     //     // Aquí podrías también guardar la nueva búsqueda en el servidor
     //   }
 
-      
+
 
     //   // Guardar búsqueda en el servidor
     //   const saveSearchResponse = await fetch('https://prueba.ciss.cl/wp-json/searchia/v1/guardar-busqueda/', {
@@ -304,7 +305,7 @@ const SearchBar = () => {
     return response.json();
   };
 
-  
+
   // Función para hacer la llamada a la API de OpenAI
   const fetchSynonyms = async () => {
     try {
@@ -336,11 +337,22 @@ const SearchBar = () => {
           fullWidth
           label="Quiero un departamento de 3 dormitorios 2 baños"
           sx={{
-            background:'#FFF',
             flexGrow: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            "& .MuiInputLabel-root": {
+              fontFamily: '"Montserrat", "Poppins", sans-serif',
+              fontSize: '14px',
+            },
             "& .MuiOutlinedInput-root": {
+              background: '#FFF',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'stretch',
+              height: '30px', // Altura del input
               "& fieldset": {
-                border: 'none'  // Elimina el borde
+                border: 'none' // Elimina el borde
               },
               "&:hover fieldset": {
                 border: 'none'  // Elimina el borde al pasar el mouse
@@ -351,11 +363,13 @@ const SearchBar = () => {
             },
             borderRadius: '4px 0 0 4px',
             marginRight: '-1px',
-            width: '30%',
+            width: '50%',
+            margin: 'auto' // Centra horizontalmente el TextField
           }}
           value={searchText}
           onChange={handleInputChange}
         />
+        
         <ToggleButtonGroup
           value={selected}
           exclusive
@@ -388,7 +402,7 @@ const SearchBar = () => {
               width: '100%', // Usa todo el ancho del botón
             }}>
               <Box sx={{
-              
+
                 width: 16,
                 height: 16,
                 borderRadius: '50%',
@@ -397,7 +411,7 @@ const SearchBar = () => {
                 transform: selected === "subsidio" ? 'translateX(20px)' : 'translateX(0)',
                 marginRight: 1,
               }} />
-              <Typography sx={{ fontSize: '10px', width:'80%', textAlign:'left', pl:2 }}>
+              <Typography sx={{ fontSize: '10px', width: '80%', textAlign: 'left', pl: 2 }}>
                 Proyectos con subsidio
               </Typography>
             </Box>
@@ -418,7 +432,7 @@ const SearchBar = () => {
                 transform: selected === "inversion" ? 'translateX(20px)' : 'translateX(0)',
                 marginRight: 1,
               }} />
-            <Typography sx={{ fontSize: '10px', width:'80%', textAlign:'left', pl:2 }}>
+              <Typography sx={{ fontSize: '10px', width: '80%', textAlign: 'left', pl: 2 }}>
                 Ideales para inversión
               </Typography>
             </Box>

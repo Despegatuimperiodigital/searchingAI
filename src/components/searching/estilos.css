@@ -1,19 +1,46 @@
 .ver-proyectos-btn {
-  font-family: "Montserrat", poppins;
+  font-family: "Montserrat", poppins !important;
   background-color: #FD4A5C !important;
-  /* Color de fondo rojo */
-  color: white !important;
-  /* Color de texto blanco */
+  color: #FFFBFB !important;
   align-self: stretch;
-  font-size: 16px;
+  font-size: 16px!important;
   text-transform: uppercase;
   background-color: #fd4a5c;
-  color: #fffbfb;
-  padding: 8px 16px;
   flex-direction: row;
 
 }
+.tittle {
+  font-family: "Montserrat", poppins !important;
+  font-size: 24px !important;
+  color: #334041;
+  font-weight: 700;
+  line-height: 1.4rem;
+  text-align: center;
+}
+.site {
+  font-family: "Montserrat", poppins !important;
+  font-size: 16px !important;
+  color: #334041  !important;
+  font-weight: 700;
+  line-height: 1.4rem;
+  text-align: center;
+}
 
+.price {
+  font-family: "Montserrat", poppins !important;
+  font-size: 16px !important;
+  color: #edeeee;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.details {
+  font-family: "Montserrat", poppins !important;
+  font-size: 12px !important;
+  color: #334041;
+  text-align: center;
+}
 .titulo-caja {
   color: #334041;
   font-size: 24px;
@@ -25,7 +52,6 @@
 .css-2awovp-MuiCardContent-root {
   padding: 0px !important;
 }
-
 
 .toggle-container {
   display: flex;
