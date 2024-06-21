@@ -248,49 +248,49 @@ const SearchBar = () => {
 
 
 
-    try {
+    // try {
 
-      const existingSearches = await fetchBusquedasGuardadas();
-      const similarQuery = checkSimilarity(searchText, existingSearches.map(item => item.query));
+    //   const existingSearches = await fetchBusquedasGuardadas();
+    //   const similarQuery = checkSimilarity(searchText, existingSearches.map(item => item.query));
   
-      if (similarQuery) {
-        setResults(formulario.propiedades); // Asume que los resultados están almacenados de esta manera
-        setMensaje("Resultados obtenidos del cache.");
-      } else {
-        // Realiza la búsqueda normalmente si no se encuentra una búsqueda similar
-        const formulario = await enviarGPT(data, promp);
+    //   if (similarQuery) {
+    //     setResults(formulario.propiedades); // Asume que los resultados están almacenados de esta manera
+    //     setMensaje("Resultados obtenidos del cache.");
+    //   } else {
+    //     // Realiza la búsqueda normalmente si no se encuentra una búsqueda similar
+    //     const formulario = await enviarGPT(data, promp);
 
 
-      setMensaje(formulario.message)
-      setResults(formulario.propiedades)
-        // Aquí podrías también guardar la nueva búsqueda en el servidor
-      }
+    //   setMensaje(formulario.message)
+    //   setResults(formulario.propiedades)
+    //     // Aquí podrías también guardar la nueva búsqueda en el servidor
+    //   }
 
       
 
-      // Guardar búsqueda en el servidor
-      const saveSearchResponse = await fetch('https://prueba.ciss.cl/wp-json/searchia/v1/guardar-busqueda/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          searchText,
-          results: formulario.propiedades,
-        }),
-      });
+    //   // Guardar búsqueda en el servidor
+    //   const saveSearchResponse = await fetch('https://prueba.ciss.cl/wp-json/searchia/v1/guardar-busqueda/', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({
+    //       searchText,
+    //       results: formulario.propiedades,
+    //     }),
+    //   });
 
-      if (!saveSearchResponse.ok) {
-        throw new Error('Error guardando búsqueda');
-      }
-    } 
-    catch (error) {
-      // Manejo de errores si alguna promesa es rechazada
-      console.error("Error al generar el formulario:", error);
-    }
-    finally {
-      setLoading(false); // Desactiva el spinner independientemente del resultado de la solicitud
-    }
+    //   if (!saveSearchResponse.ok) {
+    //     throw new Error('Error guardando búsqueda');
+    //   }
+    // } 
+    // catch (error) {
+    //   // Manejo de errores si alguna promesa es rechazada
+    //   console.error("Error al generar el formulario:", error);
+    // }
+    // finally {
+    //   setLoading(false); // Desactiva el spinner independientemente del resultado de la solicitud
+    // }
 
 
   };
