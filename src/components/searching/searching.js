@@ -343,6 +343,10 @@ const SearchBar = () => {
             "& .MuiInputLabel-root": {
               fontFamily: '"Montserrat", "Poppins", sans-serif',
               fontSize: '14px',
+              marginLeft:'10px',
+              top: '50%',
+              transform: 'translateY(-50%)'
+
             },
             "& .MuiOutlinedInput-root": {
               background: '#FFF',
@@ -369,7 +373,7 @@ const SearchBar = () => {
           value={searchText}
           onChange={handleInputChange}
         />
-        
+
         <ToggleButtonGroup
           value={selected}
           exclusive
