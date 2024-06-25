@@ -3,12 +3,13 @@
   background-color: #FD4A5C !important;
   color: #FFFBFB !important;
   align-self: stretch;
-  font-size: 16px!important;
+  font-size: 16px !important;
   text-transform: uppercase;
   background-color: #fd4a5c;
   flex-direction: row;
 
 }
+
 .tittle {
   font-family: "Montserrat", poppins !important;
   font-size: 24px !important;
@@ -17,10 +18,11 @@
   line-height: 1.4rem;
   text-align: center;
 }
+
 .site {
   font-family: "Montserrat", poppins !important;
   font-size: 16px !important;
-  color: #334041  !important;
+  color: #334041 !important;
   font-weight: 700;
   line-height: 1.4rem;
   text-align: center;
@@ -41,6 +43,7 @@
   color: #334041;
   text-align: center;
 }
+
 .titulo-caja {
   color: #334041;
   font-size: 24px;
@@ -105,3 +108,4 @@
 .toggle-button.selected .toggle-text {
   color: #FD4A5C;
 }
+

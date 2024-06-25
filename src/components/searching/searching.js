@@ -406,7 +406,6 @@ const SearchBar = () => {
               width: '100%', // Usa todo el ancho del botón
             }}>
               <Box sx={{
-
                 width: 16,
                 height: 16,
                 borderRadius: '50%',
@@ -415,7 +414,7 @@ const SearchBar = () => {
                 transform: selected === "subsidio" ? 'translateX(20px)' : 'translateX(0)',
                 marginRight: 1,
               }} />
-              <Typography sx={{ fontSize: '10px', width: '80%', textAlign: 'left', pl: 2 }}>
+              <Typography sx={{ fontFamily: "Montserrat, poppins", fontSize: '10px', width: '80%', textAlign: 'left', pl: 2 }}>
                 Proyectos con subsidio
               </Typography>
             </Box>
@@ -436,7 +435,7 @@ const SearchBar = () => {
                 transform: selected === "inversion" ? 'translateX(20px)' : 'translateX(0)',
                 marginRight: 1,
               }} />
-              <Typography sx={{ fontSize: '10px', width: '80%', textAlign: 'left', pl: 2 }}>
+              <Typography sx={{ fontFamily: "Montserrat, poppins", fontSize: '10px', width: '80%', textAlign: 'left', pl: 2 }}>
                 Ideales para inversión
               </Typography>
             </Box>

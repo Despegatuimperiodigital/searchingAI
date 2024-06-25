@@ -18,10 +18,11 @@ const NextArrow = ({ className, style, onClick, visible }) => (
             zIndex: '1', 
             right: 0,
             top: '50%',
+           
         }}
         onClick={onClick}
     >
-        <ArrowForwardIosIcon />
+        <ArrowForwardIosIcon  fontSize="large"/>
     </IconButton>
 
 );
@@ -40,7 +41,7 @@ const PrevArrow = ({ className, style, onClick, visible }) => (
         }}
         onClick={onClick}
     >
-        <ArrowBackIosNewIcon />
+        <ArrowBackIosNewIcon fontSize="large"/>
     </IconButton>
 
 );
