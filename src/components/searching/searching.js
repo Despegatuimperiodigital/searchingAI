@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TextField, Button, Box, ToggleButtonGroup, ToggleButton, Container, Typography } from '@mui/material';
+import { TextField, Button, Box, ToggleButtonGroup, ToggleButton, Container, Typography, Grid} from '@mui/material';
 import enviarGPT from './AI/enviarGPT';
 import data from './data/data.json'
 import CircularProgress from '@mui/material/CircularProgress';
@@ -322,31 +322,18 @@ const SearchBar = () => {
   };
 
   return (
-    <Container>
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          p: 2,
-          gap: 1,
-          backgroundColor: '#f6f6f6',
-        }}
-      >
+    <Container className="search-container">
         <TextField
           variant="outlined"
           fullWidth
           label="Quiero un departamento de 3 dormitorios 2 baños"
           sx={{
-            flexGrow: 1,
-            display: 'flex',
-            flexDirection: 'column',
             "& .MuiInputLabel-root": {
               fontFamily: '"Montserrat", "Poppins", sans-serif',
               fontSize: '14px',
               marginLeft:'10px',
               top: '50%',
               transform: 'translateY(-50%)'
-
             },
             "& .MuiOutlinedInput-root": {
               background: '#FFF',
@@ -367,7 +354,6 @@ const SearchBar = () => {
             },
             borderRadius: '4px 0 0 4px',
             marginRight: '-1px',
-            width: '50%',
             margin: 'auto' // Centra horizontalmente el TextField
           }}
           value={searchText}
@@ -380,10 +366,7 @@ const SearchBar = () => {
           onChange={handleAlignment}
           aria-label="project filter"
           sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: '40%', // Asegura que ocupa todo el espacio disponible
+            width: '100%', // Asegura que ocupa todo el espacio disponible
             backgroundColor: 'transparent',
             boxShadow: 'none',
             '& .MuiToggleButtonGroup-grouped': {
@@ -441,11 +424,11 @@ const SearchBar = () => {
             </Box>
           </ToggleButton>
         </ToggleButtonGroup>
+        
         <Button
-
           variant="contained"
           sx={{
-            width: '20%',
+            width: '80%',
             fontFamily: '"Montserrat", poppins;',
             lineHeight: '1',
             bgcolor: '#FD4A5C', // Color de fondo rojo
@@ -465,7 +448,6 @@ const SearchBar = () => {
         >
           VER PROYECTOS
         </Button>
-      </Box>
 
       {loading ? (
         <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
