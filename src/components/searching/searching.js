@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TextField, Button, Box, ToggleButtonGroup, ToggleButton, Container, Typography, Grid} from '@mui/material';
+import { TextField, Button, Box, ToggleButtonGroup, ToggleButton, Container, Typography, Grid } from '@mui/material';
 import enviarGPT from './AI/enviarGPT';
 import data from './data/data.json'
 import CircularProgress from '@mui/material/CircularProgress';
@@ -323,6 +323,7 @@ const SearchBar = () => {
 
   return (
     <Container className="search-container">
+      <Box className="box">
         <TextField
           variant="outlined"
           fullWidth
@@ -331,7 +332,7 @@ const SearchBar = () => {
             "& .MuiInputLabel-root": {
               fontFamily: '"Montserrat", "Poppins", sans-serif',
               fontSize: '14px',
-              marginLeft:'10px',
+              marginLeft: '10px',
               top: '50%',
               transform: 'translateY(-50%)'
             },
@@ -424,11 +425,12 @@ const SearchBar = () => {
             </Box>
           </ToggleButton>
         </ToggleButtonGroup>
-        
+
         <Button
           variant="contained"
           sx={{
             width: '80%',
+            marginBottom: '5px',
             fontFamily: '"Montserrat", poppins;',
             lineHeight: '1',
             bgcolor: '#FD4A5C', // Color de fondo rojo
@@ -448,7 +450,7 @@ const SearchBar = () => {
         >
           VER PROYECTOS
         </Button>
-
+      </Box>
       {loading ? (
         <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
           <CircularProgress />
