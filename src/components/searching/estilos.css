@@ -141,6 +141,14 @@
   margin-top: 10px;
 }
 
+.hidden-label .MuiInputLabel-root {
+  display: none;
+}
+
+.font {
+  font-family: "Montserrat", poppins !important;
+  font-size: 12px !important;
+}
 
 @media (min-width: 601px) {
   .search-container {

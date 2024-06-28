@@ -19,6 +19,13 @@ const SearchBar = () => {
 
   const [selected, setSelected] = useState('');
 
+  const [statistics, setStatistics] = useState({
+    wordFrequency: {},
+    boxClicks: { subsidio: 0, inversion: 0 },
+    phraseFrequency: {},
+    searchButtonClicks: 0
+  });
+
   useEffect(() => {
     const filteredProperties = data.filter(property => {
       if (selected === 'subsidio') {
@@ -41,10 +48,16 @@ const SearchBar = () => {
   }
 
   const handleAlignment = (event, newAlignment) => {
-
-    setSelected(newAlignment);
-    var x = 0
-
+    if (newAlignment !== null) {
+      setSelected(newAlignment);
+      setStatistics(prevStats => ({
+        ...prevStats,
+        boxClicks: {
+          ...prevStats.boxClicks,
+          [newAlignment]: prevStats.boxClicks[newAlignment] + 1
+        }
+      }));
+    }
   };
 
   const filteredProperties = results.filter(property => {
@@ -60,6 +73,34 @@ const SearchBar = () => {
   const handleSearch = async (event) => {
     setLoading(true); // Activa el spinner antes de hacer la solicitud
 
+    // Increment search button clicks
+    setStatistics(prevStats => ({
+      ...prevStats,
+      searchButtonClicks: prevStats.searchButtonClicks + 1,
+    }));
+
+    // Update word frequency
+    const words = searchText.split(' ');
+    const newWordFrequency = { ...statistics.wordFrequency };
+    words.forEach(word => {
+      newWordFrequency[word] = (newWordFrequency[word] || 0) + 1;
+    });
+
+    // Update phrase frequency
+    const newPhraseFrequency = { ...statistics.phraseFrequency };
+    newPhraseFrequency[searchText] = (newPhraseFrequency[searchText] || 0) + 1;
+
+    setStatistics(prevStats => ({
+      ...prevStats,
+      wordFrequency: newWordFrequency,
+      phraseFrequency: newPhraseFrequency
+    }));
+
+    // Simular una búsqueda
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+
 
     const promp = `{
     "query": ${searchText},
@@ -69,7 +110,7 @@ const SearchBar = () => {
           "thumbnail": "https://ciss.cl/wp-content/uploads/2022/09/Fuentes-de-Lomas-II-Destacada-1024x671.jpg",
           "link": "https://ciss.cl/Propiedades/fuentes-de-lomas-2/",
           "link_target_attr": "_blank",
-          "price": "Precio: 3.005 UF",
+          "price": "3.005 UF",
           "habitaciones": "Habitaciones 3",
           "ciudad": "Concepción",
           "baños": "2",
@@ -81,7 +122,7 @@ const SearchBar = () => {
           "title": "Fuentes de Piedra IV",
           "thumbnail": "https://ciss.cl/wp-content/uploads/2023/06/fuentes-de-piedra-iv-1024x671.png",
           "link": "https://ciss.cl/Propiedades/fuentes-de-piedra-iv/",
-          "price": "Precio: 2600 UF",
+          "price": "2.600 UF",
           "habitaciones": "Habitaciones 3",
           "ciudad": "Concepción",
           "baños": "2",
@@ -93,7 +134,7 @@ const SearchBar = () => {
           "title": "Fuentes de Miguel Collao",
           "thumbnail": "https://ciss.cl/wp-content/uploads/2024/02/imagen-destacada-Miguel-Collao.jpg",
           "link": "https://ciss.cl/Propiedades/fuentes-de-miguel-collao/",
-          "price": "Precio: 3.340 UF",
+          "price": "3.340 UF",
           "habitaciones": "Habitaciones 3",
           "ciudad": "Concepción",
           "baños": "2",
@@ -117,7 +158,7 @@ const SearchBar = () => {
           "title": "Edificio Peumayen",
           "thumbnail": "https://ciss.cl/wp-content/uploads/2022/11/peumayén.png",
           "link": "https://ciss.cl/Propiedades/edificio-peumayen-3/",
-          "price": "Precio: 4.790 UF",
+          "price": "4.790 UF",
           "habitaciones": "Habitaciones 2 a 3",
           "ciudad": "Lomas San Sebastián",
           "baños": "2",
@@ -128,7 +169,7 @@ const SearchBar = () => {
       {
           "title": "Parque Huertos",
           "link": "https://ciss.cl/Propiedades/parque-huertos-2/",
-          "price": "Precio: 3.009 UF",
+          "price": "3.009 UF",
           "habitaciones": "Habitaciones 1 a 3",
           "ciudad": "Huertos Familiares",
           "baños": "1 a 2",
@@ -140,7 +181,7 @@ const SearchBar = () => {
           "title": "Mirador Oceánico",
           "thumbnail": "https://ciss.cl/wp-content/uploads/2022/07/mirador.png",
           "link": "https://ciss.cl/Propiedades/mirador-oceanico/",
-          "price": "Precio: 3772 UF",
+          "price": "3772 UF",
           "habitaciones": "Habitaciones 1 a 3",
           "ciudad": "Andalue",
           "baños": "1 a 3",
@@ -152,7 +193,7 @@ const SearchBar = () => {
           "title": "Edificio Rozas Condell",
           "thumbnail": "https://ciss.cl/wp-content/uploads/2022/07/Edificio-Rozas.jpg",
           "link": "https://ciss.cl/Propiedades/edificio-rozas-condell/",
-          "price": "Precio: 2613 UF",
+          "price": "2.613 UF",
           "habitaciones": "Habitaciones 1 a 3",
           "ciudad": "Concepción",
           "baños": "1 a 2",
@@ -164,7 +205,7 @@ const SearchBar = () => {
           "title": "Edificio Roosevelt",
           "thumbnail": "https://ciss.cl/wp-content/uploads/2022/01/Roosevelt-destacada-1024x671.jpg",
           "link": "https://ciss.cl/Propiedades/edificio-roosevelt/",
-          "price": "Precio: 8.000 UF",
+          "price": "8.000 UF",
           "habitaciones": "Habitaciones 3",
           "ciudad": "Concepción",
           "baños": "3",
@@ -176,7 +217,7 @@ const SearchBar = () => {
           "title": "Fuentes de Porvenir",
           "thumbnail": "https://ciss.cl/wp-content/uploads/2022/03/imagen-destacada.jpg",
           "link": "https://ciss.cl/Propiedades/fuentes-de-porvenir/",
-          "price": "Precio: 2.400 UF",
+          "price": "2.400 UF",
           "habitaciones": "Habitaciones 3",
           "ciudad": "Chiguayante",
           "baños": "2",
@@ -188,7 +229,7 @@ const SearchBar = () => {
           "title": "Fuentes de Rucalhue 2",
           "thumbnail": "https://ciss.cl/wp-content/uploads/2022/01/imagen-destacada-2-1024x671.jpg",
           "link": "https://ciss.cl/Propiedades/fuentes-de-rucalhue-2/",
-          "price": "Precio: 2.480 UF",
+          "price": "2.480 UF",
           "habitaciones": "Habitaciones 2 a 3",
           "ciudad": "Hualpén",
           "baños": "2",
@@ -200,7 +241,7 @@ const SearchBar = () => {
           "title": "Fuentes de San Pedro",
           "thumbnail": "https://ciss.cl/wp-content/uploads/2022/01/JYG5732-1-1024x683.jpg",
           "link": "https://ciss.cl/Propiedades/fuentes-de-san-pedro/",
-          "price": "Precio: 2.100 UF",
+          "price": "2.100 UF",
           "habitaciones": "Habitaciones 2 a 3",
           "ciudad": "San Pedro de la Paz",
           "baños": "2",
@@ -212,7 +253,7 @@ const SearchBar = () => {
           "title": "Edificio New Center",
           "thumbnail": "https://ciss.cl/wp-content/uploads/2022/01/Roosevelt-destacada-1536x1006-1-1024x671.jpg",
           "link": "https://ciss.cl/Propiedades/edificio-new-center/",
-          "price": "Precio: 3023 UF",
+          "price": "3023 UF",
           "habitaciones": "Habitaciones 1 a 2",
           "ciudad": "Concepción",
           "baños": "1 a 2",
@@ -224,7 +265,7 @@ const SearchBar = () => {
           "title": "Fuentes de Prats",
           "thumbnail": "https://ciss.cl/wp-content/uploads/2022/01/portada-1024x671.jpg",
           "link": "https://ciss.cl/Propiedades/fuentes-de-prats/",
-          "price": "Precio: 1.980 UF",
+          "price": "1.980 UF",
           "habitaciones": "Habitaciones 3",
           "ciudad": "Coronel",
           "baños": "2",
@@ -236,7 +277,7 @@ const SearchBar = () => {
           "title": "Fuentes de Aeroparque",
           "thumbnail": "https://ciss.cl/wp-content/uploads/2024/04/Exterior-condominio-1024x576.jpg",
           "link": "https://ciss.cl/Propiedades/fuentes-de-aeroparque/",
-          "price": "Precio: 3799 UF",
+          "price": "3.799 UF",
           "habitaciones": "Habitaciones 3",
           "ciudad": "Concepción",
           "baños": "2",
@@ -297,6 +338,18 @@ const SearchBar = () => {
   };
 
 
+  const getMostFrequent = (obj) => {
+    return Object.entries(obj).reduce((a, b) => (b[1] > a[1] ? b : a), ['', 0]);
+  };
+
+  useEffect(() => {
+    // Log statistics for debugging
+    console.log(statistics);
+  }, [statistics]);
+
+  const mostFrequentWord = getMostFrequent(statistics.wordFrequency);
+  const mostFrequentPhrase = getMostFrequent(statistics.phraseFrequency);
+
   const fetchBusquedasGuardadas = async () => {
     const response = await fetch('https://prueba.ciss.cl/wp-json/searchia/v1/obtener-busquedas/');
     if (!response.ok) {
@@ -328,6 +381,7 @@ const SearchBar = () => {
           variant="outlined"
           fullWidth
           label="Quiero un departamento de 3 dormitorios 2 baños"
+          className={searchText ? 'hidden-label' : ''}
           sx={{
             "& .MuiInputLabel-root": {
               fontFamily: '"Montserrat", "Poppins", sans-serif',
@@ -464,6 +518,15 @@ const SearchBar = () => {
           <ResultsBox properties={results} />
         </Box>
       )}
+
+      <Box sx={{ mt: 2,  backgroundColor: '#f6f6f6'}}>
+        <Typography variant="h6" sx={{ fontFamily: '"Montserrat", "Poppins", sans-serif' }}>Estadísticas</Typography>
+        <Typography variant="body2" className='font'>Palabra más utilizada: {mostFrequentWord[0]} ({mostFrequentWord[1]} veces)</Typography>
+        <Typography variant="body2" className='font'>Frase más repetida: {mostFrequentPhrase[0]} ({mostFrequentPhrase[1]} veces)</Typography>
+        <Typography variant="body2" className='font'>Clics en Proyectos con subsidio: {statistics.boxClicks.subsidio}</Typography>
+        <Typography variant="body2" className='font'>Clics en Ideales para inversión: {statistics.boxClicks.inversion}</Typography>
+        <Typography variant="body2" className='font'>Clics búsqueda: {statistics.searchButtonClicks}</Typography>
+      </Box>
     </Container>
 
   );
