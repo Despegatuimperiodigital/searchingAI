@@ -519,8 +519,8 @@ const SearchBar = () => {
         </Box>
       )}
 
-      <Box sx={{ mt: 2,  backgroundColor: '#f6f6f6'}}>
-        <Typography variant="h6" sx={{ fontFamily: '"Montserrat", "Poppins", sans-serif' }}>Estadísticas</Typography>
+      <Box sx={{ mt: 2, backgroundColor: '#f6f6f6' }}>
+        <Typography sx={{ fontFamily: '"Montserrat", "Poppins", sans-serif', fontSize: '16px' }}>Estadísticas</Typography>
         <Typography variant="body2" className='font'>Palabra más utilizada: {mostFrequentWord[0]} ({mostFrequentWord[1]} veces)</Typography>
         <Typography variant="body2" className='font'>Frase más repetida: {mostFrequentPhrase[0]} ({mostFrequentPhrase[1]} veces)</Typography>
         <Typography variant="body2" className='font'>Clics en Proyectos con subsidio: {statistics.boxClicks.subsidio}</Typography>
