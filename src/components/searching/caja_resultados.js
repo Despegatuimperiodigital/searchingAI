@@ -48,6 +48,16 @@ const PrevArrow = ({ className, style, onClick, visible }) => (
 
 const ResultsBox = ({ properties }) => {
     const [showArrows, setShowArrows] = useState(false);
+    const [clickCounts, setClickCounts] = useState(Array(properties.length).fill(0));
+
+    const handleBoxClick = (index) => {
+        setClickCounts(prevCounts => {
+            const newCounts = [...prevCounts];
+            newCounts[index] += 1;
+            return newCounts;
+        });
+    };
+
     const settings = {
         dots: false,
         infinite: true,

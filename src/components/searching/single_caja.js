@@ -4,7 +4,7 @@ import FmdGoodIcon from '@mui/icons-material/FmdGood';
 import './estilos.css';
 import '../../fonts.css';
 
-const SingleBox = ({ data }) => {
+const SingleBox = ({ data, onClick  }) => {
     return (
         <Card sx={{ maxWidth: 324, m: 3, p: 0, border: 'none', boxShadow: 'none', }}>
             <CardMedia
@@ -67,7 +67,7 @@ const SingleBox = ({ data }) => {
                     </Box>
                 </Box>
             </CardContent>
-            <Button href={data.link} className="ver-proyectos-btn" color="primary" sx={{ borderRadius: 0, boder: 'none', padding: '3px 13px' }}>
+            <Button href={data.link} onClick={onClick} className="ver-proyectos-btn" color="primary" sx={{ borderRadius: 0, boder: 'none', padding: '3px 13px' }}>
                 CONOCER
             </Button>
         </Card>
