@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import { IconButton } from '@mui/material';
+import { IconButton, Typography } from '@mui/material';
 
 const NextArrow = ({ className, style, onClick, visible }) => (
     <IconButton
@@ -98,7 +98,10 @@ const ResultsBox = ({ properties }) => {
             <Slider {...settings}>
                 {properties.map((property, index) => (
                     <div key={index}>
-                        <SingleBox data={property} />
+                        <SingleBox data={property} onClick={() => handleBoxClick(index)}/>
+                        <Typography variant="body2" align="center" className='font'>
+                            Clics: {clickCounts[index]}
+                        </Typography>
                     </div>
                 ))}
             </Slider>
