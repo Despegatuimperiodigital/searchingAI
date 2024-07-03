@@ -4,7 +4,7 @@ import FmdGoodIcon from '@mui/icons-material/FmdGood';
 import './estilos.css';
 import '../../fonts.css';
 
-const SingleBox = ({ data, onClick  }) => {
+const SingleBox = ({ data, onClick }) => {
     return (
         <Card sx={{ maxWidth: 324, m: 3, p: 0, border: 'none', boxShadow: 'none', }}>
             <CardMedia
@@ -35,12 +35,13 @@ const SingleBox = ({ data, onClick  }) => {
                     </Typography>
                 </Box>
                 <Box sx={{ display: 'flex', }}>
-                    <Box sx={{ padding: '6px 14px', borderRadius: "8px", width: "50%", mb: 1, mr: 0.5, textAlign: 'center', background: '#e0e0e0' }}>
+                    <Box sx={{
+                        padding: '6px 14px', borderRadius: "8px", width: "50%", mb: 1, mr: 0.5, textAlign: 'center', background: '#e0e0e0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <Typography variant="body2" className='details'>
                             {data.tipo_subsidio}
                         </Typography>
                     </Box>
-                    <Box sx={{ padding: '6px 14px', borderRadius: "8px", width: "50%", mb: 1, ml: 0.5, textAlign: 'center', background: '#e0e0e0' }}>
+                    <Box sx={{ padding: '6px 14px', borderRadius: "8px", width: "50%", mb: 1, ml: 0.5, textAlign: 'center', background: '#e0e0e0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <Typography variant="body2" className='details'>
                             {data.tipo_de_proyecto}
                         </Typography>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import SingleBox from './single_caja'; // Asegúrate de que este es el path correcto al componente
 import "slick-carousel/slick/slick.css";
@@ -7,48 +7,59 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { IconButton, Typography } from '@mui/material';
 
-const NextArrow = ({ className, style, onClick, visible }) => (
+const NextArrow = ({ className, style, onClick, windowWidth }) => (
     <IconButton
         className={className}
         style={{
-            display: visible ? 'block' : 'none',
             position: 'absolute',
-            color: '#fd4a5c',
-            transform: 'translateY(-50%)',
-            zIndex: '1', 
-            right: 0,
-            top: '50%',
-           
-        }}
-        onClick={onClick}
-    >
-        <ArrowForwardIosIcon  fontSize="large" fontWeight="lighter" />
-    </IconButton>
-
-);
-
-const PrevArrow = ({ className, style, onClick, visible }) => (
-    <IconButton
-        className={className}
-        style={{
-            display: visible ? 'block' : 'none',
             color: '#fd4a5c',
             transform: 'translateY(-50%)',
             zIndex: '1',
-            position: 'absolute',
-            left: 0,
+            right: windowWidth <= 600 ? '-20px' : '-20px', // Ajusta la posición según el tamaño de la pantalla
             top: '50%',
+            display: 'block',
+            marginRight: windowWidth <= 600 ? '10px' : '0px',
         }}
         onClick={onClick}
     >
-        <ArrowBackIosNewIcon fontSize="large"  fontWeight="lighter"/>
+        <ArrowForwardIosIcon fontSize="large" />
     </IconButton>
+);
 
+const PrevArrow = ({ className, style, onClick, windowWidth }) => (
+    <IconButton
+        className={className}
+        style={{
+            position: 'absolute',
+            color: '#fd4a5c',
+            transform: 'translateY(-50%)',
+            zIndex: '1',
+            left: windowWidth <= 600 ? '-40px' : '-50px', // Ajusta la posición según el tamaño de la pantalla
+            top: '50%',
+            display: 'block',
+        }}
+        onClick={onClick}
+    >
+        <ArrowBackIosNewIcon fontSize="large" />
+    </IconButton>
 );
 
 const ResultsBox = ({ properties }) => {
-    const [showArrows, setShowArrows] = useState(false);
     const [clickCounts, setClickCounts] = useState(Array(properties.length).fill(0));
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
 
     const handleBoxClick = (index) => {
         setClickCounts(prevCounts => {
@@ -66,8 +77,8 @@ const ResultsBox = ({ properties }) => {
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 5000,
-        nextArrow: <NextArrow visible={showArrows} />,
-        prevArrow: <PrevArrow visible={showArrows} />,
+        nextArrow: <NextArrow windowWidth={windowWidth} />,
+        prevArrow: <PrevArrow windowWidth={windowWidth} />,
         responsive: [
             {
                 breakpoint: 1024,
@@ -90,15 +101,12 @@ const ResultsBox = ({ properties }) => {
     };
 
     return (
-        <div
-            onMouseEnter={() => setShowArrows(true)}
-            onMouseLeave={() => setShowArrows(false)}
-            style={{ position: 'relative' }}
-        >
+        <div style={{ position: 'relative' }}>
+
             <Slider {...settings}>
                 {properties.map((property, index) => (
                     <div key={index}>
-                        <SingleBox data={property} onClick={() => handleBoxClick(index)}/>
+                        <SingleBox data={property} onClick={() => handleBoxClick(index)} />
                         <Typography variant="body2" align="center" className='font'>
                             Clics: {clickCounts[index]}
                         </Typography>

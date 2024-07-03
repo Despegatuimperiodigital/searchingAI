@@ -22,33 +22,33 @@ const Statistics = ({ statistics }) => {
       </Typography>
 
       <Box sx={{ backgroundColor: '#c0392b', color: '#fff', padding: 2, borderRadius: 2, mt: 2 }}>
-        <Typography variant="body2" sx={{ fontFamily: '"Montserrat", "Poppins", sans-serif', fontSize: { xs: '12px', sm: '16px' } }}>1- Frase más buscada: {mostFrequentPhrase[0]} ({mostFrequentPhrase[1]} veces)</Typography>
-        <Typography variant="body2" sx={{ fontFamily: '"Montserrat", "Poppins", sans-serif', fontSize: { xs: '12px', sm: '16px' } }}>2- Palabra más repetida: {mostFrequentWord[0]} ({mostFrequentWord[1]} veces)</Typography>
-        <Typography variant="body2" sx={{ fontFamily: '"Montserrat", "Poppins", sans-serif', fontSize: { xs: '12px', sm: '16px' } }}>3- Propiedad más visitada: </Typography>
-        <Typography variant="body2" sx={{ fontFamily: '"Montserrat", "Poppins", sans-serif', fontSize: { xs: '12px', sm: '16px' } }}>4- Clics en Proyectos con subsidio: {statistics.boxClicks.subsidio}</Typography>
-        <Typography variant="body2" sx={{ fontFamily: '"Montserrat", "Poppins", sans-serif', fontSize: { xs: '12px', sm: '16px' } }}>5- Clics en Ideales para inversión: {statistics.boxClicks.inversion}</Typography>
-        <Typography variant="body2" sx={{ fontFamily: '"Montserrat", "Poppins", sans-serif', fontSize: { xs: '12px', sm: '16px' } }}>6- Clics en búsqueda: {statistics.searchButtonClicks}</Typography>
+        <Typography variant="body2" className="fontFamily" sx={{ fontSize: { xs: '12px', sm: '16px' } }}>1- Frase más buscada: {mostFrequentPhrase[0]} ({mostFrequentPhrase[1]} veces)</Typography>
+        <Typography variant="body2" className="fontFamily" sx={{ fontSize: { xs: '12px', sm: '16px' } }}>2- Palabra más repetida: {mostFrequentWord[0]} ({mostFrequentWord[1]} veces)</Typography>
+        <Typography variant="body2" className="fontFamily" sx={{ fontSize: { xs: '12px', sm: '16px' } }}>3- Propiedad más visitada: </Typography>
+        <Typography variant="body2" className="fontFamily" sx={{ fontSize: { xs: '12px', sm: '16px' } }}>4- Clics en Proyectos con subsidio: {statistics.boxClicks.subsidio}</Typography>
+        <Typography variant="body2" className="fontFamily" sx={{ fontSize: { xs: '12px', sm: '16px' } }}>5- Clics en Ideales para inversión: {statistics.boxClicks.inversion}</Typography>
+        <Typography variant="body2" className="fontFamily" sx={{ fontSize: { xs: '12px', sm: '16px' } }}>6- Clics en búsqueda: {statistics.searchButtonClicks}</Typography>
       </Box>
 
       <Grid container spacing={2} sx={{ mt: 2 }}>
         <Grid item xs={4}>
-          <Box sx={{ backgroundColor: '#f1c40f', padding: 2, borderRadius: 2, textAlign: 'center', height:'80px' }}>
-            <Typography sx={{ fontFamily: '"Montserrat", "Poppins", sans-serif',fontSize: { xs: '18px', sm: '24px' }, fontWeight: 'bold' }}>50</Typography>
-            <Typography sx={{ fontFamily: '"Montserrat", "Poppins", sans-serif', fontSize: { xs: '12px', sm: '16px' } }}>Usos hoy</Typography>
+          <Box sx={{ backgroundColor: '#f1c40f', padding: 2, borderRadius: 2, textAlign: 'center', height:'80px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+            <Typography className="fontFamily" sx={{ fontSize: { xs: '18px', sm: '24px' }, fontWeight: 'bold' }}>50</Typography>
+            <Typography className="fontFamily" sx={{ fontSize: { xs: '12px', sm: '16px' } }}>Usos hoy</Typography>
           </Box>
         </Grid>
 
         <Grid item xs={4}>
-          <Box sx={{ backgroundColor: '#c0392b', padding: 2, borderRadius: 2, textAlign: 'center', color: '#fff',height:'80px' }}>
-            <Typography sx={{ fontFamily: '"Montserrat", "Poppins", sans-serif', fontSize: { xs: '18px', sm: '24px' }, fontWeight: 'bold' }}>200</Typography>
-            <Typography sx={{ fontFamily: '"Montserrat", "Poppins", sans-serif', fontSize: { xs: '12px', sm: '16px' } }}>Usos semanales</Typography>
+          <Box sx={{ backgroundColor: '#c0392b', padding: 2, borderRadius: 2, textAlign: 'center', color: '#fff',height:'80px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+            <Typography className="fontFamily" sx={{ fontSize: { xs: '18px', sm: '24px' }, fontWeight: 'bold' }}>200</Typography>
+            <Typography className="fontFamily" sx={{ fontSize: { xs: '12px', sm: '16px' } }}>Usos semanales</Typography>
           </Box>
         </Grid>
         
         <Grid item xs={4}>
-          <Box sx={{ backgroundColor: '#f1c40f', padding: 2, borderRadius: 2, textAlign: 'center',height:'80px' }}>
-            <Typography sx={{ fontFamily: '"Montserrat", "Poppins", sans-serif',fontSize: { xs: '18px', sm: '24px' }, fontWeight: 'bold' }}>2K</Typography>
-            <Typography sx={{ fontFamily: '"Montserrat", "Poppins", sans-serif', fontSize: { xs: '12px', sm: '16px' } }}>Usos Mensuales</Typography>
+          <Box sx={{ backgroundColor: '#f1c40f', padding: 2, borderRadius: 2, textAlign: 'center',height:'80px', display: 'flex', flexDirection: 'column', justifyContent: 'center' , alignItems: 'center' }}>
+            <Typography className="fontFamily" sx={{ fontSize: { xs: '18px', sm: '24px' }, fontWeight: 'bold' }}>2K</Typography>
+            <Typography className="fontFamily" sx={{ fontSize: { xs: '12px', sm: '16px' } }}>Usos Mensuales</Typography>
           </Box>
         </Grid>
       </Grid>

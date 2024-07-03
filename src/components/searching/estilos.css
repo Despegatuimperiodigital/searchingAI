@@ -12,7 +12,7 @@
 
 .tittle {
   font-family: "Montserrat", poppins !important;
-  font-size: 24px !important;
+  font-size: 22px !important;
   color: #334041;
   font-weight: 700;
   line-height: 1.4rem;
@@ -149,6 +149,10 @@
   font-family: "Montserrat", poppins !important;
   font-size: 12px !important;
 }
+.fontFamily {
+  font-family: "Montserrat", poppins !important;
+}
+
 
 @media (min-width: 601px) {
   .search-container {
@@ -196,4 +200,5 @@
   .search-container .MuiTextField-root .MuiInputBase-input {
     font-size: 10px !important; /* Tamaño del texto del input */
   }
+  
 }
