@@ -7,6 +7,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { IconButton, Typography } from '@mui/material';
 
+// Flecha derecha
 const NextArrow = ({ className, style, onClick, windowWidth }) => (
     <IconButton
         className={className}
@@ -15,10 +16,10 @@ const NextArrow = ({ className, style, onClick, windowWidth }) => (
             color: '#fd4a5c',
             transform: 'translateY(-50%)',
             zIndex: '1',
-            right: windowWidth <= 600 ? '-20px' : '-20px', // Ajusta la posición según el tamaño de la pantalla
-            top: '50%',
+            right: windowWidth <= 600 ? '-20px' : '-20px', 
+            top: windowWidth <= 600 ? '43%' : '43%',
             display: 'block',
-            marginRight: windowWidth <= 600 ? '10px' : '0px',
+            marginRight: windowWidth <= 600 ? '20px' : '15px',
         }}
         onClick={onClick}
     >
@@ -26,6 +27,7 @@ const NextArrow = ({ className, style, onClick, windowWidth }) => (
     </IconButton>
 );
 
+// Flecha izquierda
 const PrevArrow = ({ className, style, onClick, windowWidth }) => (
     <IconButton
         className={className}
@@ -34,9 +36,10 @@ const PrevArrow = ({ className, style, onClick, windowWidth }) => (
             color: '#fd4a5c',
             transform: 'translateY(-50%)',
             zIndex: '1',
-            left: windowWidth <= 600 ? '-40px' : '-50px', // Ajusta la posición según el tamaño de la pantalla
-            top: '50%',
+            left: windowWidth <= 600 ? '-50px' : '-50px', 
+            top: windowWidth <= 600 ? '43%' : '43%', 
             display: 'block',
+            marginLeft: windowWidth <= 600 ? '20px' : '15px',
         }}
         onClick={onClick}
     >
