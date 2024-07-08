@@ -25,7 +25,8 @@ const SearchBar = () => {
     wordFrequency: {},
     boxClicks: { subsidio: 0, inversion: 0 },
     phraseFrequency: {},
-    searchButtonClicks: 0
+    searchButtonClicks: 0,
+    propertyClicks: []
   });
 
   useEffect(() => {
@@ -71,6 +72,16 @@ const SearchBar = () => {
     return true; // Si no hay selección, muestra todas las propiedades
   });
 
+  const handlePropertyClick = (index, count) => {
+    setStatistics(prevStats => {
+      const newPropertyClicks = [...prevStats.propertyClicks];
+      newPropertyClicks[index] = count;
+      return {
+        ...prevStats,
+        propertyClicks: newPropertyClicks
+      };
+    });
+  };
 
   const handleSearch = async () => {
     setLoading(true);
@@ -534,7 +545,7 @@ const SearchBar = () => {
                 <div>
                   {mensaje}
                 </div>
-                <ResultsBox properties={results} />
+                <ResultsBox properties={results} onPropertyClick={handlePropertyClick} />
               </Box>
             )}
 

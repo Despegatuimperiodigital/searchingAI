@@ -63,15 +63,6 @@ const ResultsBox = ({ properties }) => {
         };
     }, []);
 
-
-    const handleBoxClick = (index) => {
-        setClickCounts(prevCounts => {
-            const newCounts = [...prevCounts];
-            newCounts[index] += 1;
-            return newCounts;
-        });
-    };
-
     const settings = {
         dots: false,
         infinite: true,
@@ -105,19 +96,14 @@ const ResultsBox = ({ properties }) => {
 
     return (
         <div style={{ position: 'relative' }}>
-
-            <Slider {...settings}>
-                {properties.map((property, index) => (
-                    <div key={index}>
-                        <SingleBox data={property} onClick={() => handleBoxClick(index)} />
-                        <Typography variant="body2" align="center" className='font'>
-                            Clics: {clickCounts[index]}
-                        </Typography>
-                    </div>
-                ))}
-            </Slider>
-
-        </div>
+        <Slider {...settings}>
+            {properties.map((property, index) => (
+                <div key={index}>
+                    <SingleBox data={property} />
+                </div>
+            ))}
+        </Slider>
+    </div>
     );
 }
 export default ResultsBox;
