@@ -30,15 +30,6 @@ const Statistics = ({ statistics }) => {
           <Typography variant="body2" className="fontFamily" sx={{ fontSize: { xs: '12px', sm: '16px' } }}>6- Clics en búsqueda: {statistics.searchButtonClicks}</Typography>
         </Box>
 
-        <Box sx={{ mt: 2 }}>
-          <Typography sx={{ fontFamily: '"Montserrat", "Poppins", sans-serif', fontSize: '20px', color: '#333', fontWeight: 'bold' }}>Clics por Propiedad</Typography>
-          {statistics.propertyClicks.map((clickCount, index) => (
-            <Typography key={index} variant="body2" className="fontFamily" sx={{ fontSize: { xs: '12px', sm: '16px' } }}>
-              Propiedad {index + 1}: {clickCount} clics
-            </Typography>
-          ))}
-        </Box>
-
         <Grid container spacing={2} sx={{ mt: 2 }}>
           <Grid item xs={4}>
             <Box sx={{ backgroundColor: '#f1c40f', padding: 2, borderRadius: 2, textAlign: 'center', height: '80px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
