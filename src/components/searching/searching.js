@@ -517,23 +517,6 @@ const SearchBar = () => {
                 VER PROYECTOS
               </Button>
 
-              <Link to="/statistics" style={{ textDecoration: 'none' }}>
-                <Button
-                  variant="outlined"
-                  sx={{
-                    width: '80%',
-                    marginBottom: '5px',
-                    fontFamily: '"Montserrat", poppins;',
-                    lineHeight: '1',
-                    borderRadius: '8px',
-                    padding: '6px 12px',
-                    textTransform: 'none',
-                    fontSize: '12px'
-                  }}
-                >
-                  VER ESTADÍSTICAS
-                </Button>
-              </Link>
             </Box>
             {loading ? (
               <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>

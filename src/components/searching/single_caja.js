@@ -1,10 +1,25 @@
-import React from 'react';
-import { Card, CardContent, Typography, Button, CardMedia, Box } from '@mui/material';
+import React, { useState } from 'react';
+import { Card, CardContent, Typography, Button, CardMedia, Box, IconButton } from '@mui/material';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import './estilos.css';
 import '../../fonts.css';
 
 const SingleBox = ({ data, onClick }) => {
+    const [like, setLike] = useState(false);
+    const [dislike, setDislike] = useState(false);
+
+    const handleLike = () => {
+        setLike(!like);
+        if (dislike) setDislike(false);
+    };
+
+    const handleDislike = () => {
+        setDislike(!dislike);
+        if (like) setLike(false);
+    };
+
     return (
         <Card sx={{ maxWidth: 324, m: 3, p: 0, border: 'none', boxShadow: 'none', }}>
             <CardMedia
@@ -36,7 +51,8 @@ const SingleBox = ({ data, onClick }) => {
                 </Box>
                 <Box sx={{ display: 'flex', }}>
                     <Box sx={{
-                        padding: '6px 14px', borderRadius: "8px", width: "50%", mb: 1, mr: 0.5, textAlign: 'center', background: '#e0e0e0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        padding: '6px 14px', borderRadius: "8px", width: "50%", mb: 1, mr: 0.5, textAlign: 'center', background: '#e0e0e0', display: 'flex', alignItems: 'center', justifyContent: 'center'
+                    }}>
                         <Typography variant="body2" className='details'>
                             {data.tipo_subsidio}
                         </Typography>
@@ -71,6 +87,14 @@ const SingleBox = ({ data, onClick }) => {
             <Button href={data.link} onClick={onClick} className="ver-proyectos-btn" color="primary" sx={{ borderRadius: 0, boder: 'none', padding: '3px 13px' }}>
                 CONOCER
             </Button>
+            <Box sx={{ display: 'flex', justifyContent: 'center', mt: 1 }}>
+                <IconButton onClick={handleLike} color={like ? "primary" : "default"}>
+                    <ThumbUpIcon />
+                </IconButton>
+                <IconButton onClick={handleDislike} color={dislike ? "primary" : "default"}>
+                    <ThumbDownIcon />
+                </IconButton>
+            </Box>
         </Card>
     );
 };
