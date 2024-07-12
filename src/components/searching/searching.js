@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TextField, Button, Box, ToggleButtonGroup, ToggleButton, Container, Typography, Grid } from '@mui/material';
+import { TextField, Button, Box, ToggleButtonGroup, ToggleButton, Container, Typography, Grid, IconButton } from '@mui/material';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import enviarGPT from './AI/enviarGPT';
 import data from './data/data.json'
@@ -7,19 +7,19 @@ import CircularProgress from '@mui/material/CircularProgress';
 import ResultsBox from './caja_resultados';
 import Statistics from './statistics';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import './estilos.css';
 import '../../fonts.css';
 
 const SearchBar = () => {
   const [searchText, setSearchText] = useState("");  // Estado para almacenar el texto del formulario
-
   const [results, setResults] = useState([]);
-
   const [mensaje, setMensaje] = useState('')
-
   const [loading, setLoading] = useState(false);
-
   const [selected, setSelected] = useState('');
+  const [like, setLike] = useState(false);
+  const [dislike, setDislike] = useState(false);
 
   const [statistics, setStatistics] = useState({
     wordFrequency: {},
@@ -29,6 +29,16 @@ const SearchBar = () => {
     propertyClicks: []
   });
 
+  const handleLike = () => {
+    setLike(!like);
+    if (dislike) setDislike(false);
+  };
+
+  const handleDislike = () => {
+    setDislike(!dislike);
+    if (like) setLike(false);
+  };
+  
   useEffect(() => {
     const filteredProperties = data.filter(property => {
       if (selected === 'subsidio') {
@@ -108,7 +118,6 @@ const SearchBar = () => {
     setTimeout(() => {
       setLoading(false);
     }, 2000);
-
 
     const promp = `{
     "query": ${searchText},
@@ -531,9 +540,15 @@ const SearchBar = () => {
                 <ResultsBox properties={results} onPropertyClick={handlePropertyClick} />
               </Box>
             )}
-
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', mt: 2 }}>
+              <IconButton onClick={handleLike} color={like ? "primary" : "default"}>
+                <ThumbUpIcon />
+              </IconButton>
+              <IconButton onClick={handleDislike} color={dislike ? "primary" : "default"}>
+                <ThumbDownIcon />
+              </IconButton>
+            </Box>
           </Container>
-
         )} />
       </Routes>
     </Router>
