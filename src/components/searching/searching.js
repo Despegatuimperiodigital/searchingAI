@@ -20,6 +20,7 @@ const SearchBar = () => {
   const [selected, setSelected] = useState('');
   const [like, setLike] = useState(false);
   const [dislike, setDislike] = useState(false);
+  const [feedback, setFeedback] = useState('');
 
   const [statistics, setStatistics] = useState({
     wordFrequency: {},
@@ -38,7 +39,15 @@ const SearchBar = () => {
     setDislike(!dislike);
     if (like) setLike(false);
   };
-  
+  const handleFeedbackChange = (event) => {
+    setFeedback(event.target.value);
+  };
+
+  const handleSubmitFeedback = () => {
+    console.log('Calificación:', feedback);
+    setFeedback('');
+  };
+
   useEffect(() => {
     const filteredProperties = data.filter(property => {
       if (selected === 'subsidio') {
@@ -547,6 +556,40 @@ const SearchBar = () => {
               <IconButton onClick={handleDislike} color={dislike ? "primary" : "default"}>
                 <ThumbDownIcon />
               </IconButton>
+            </Box>
+
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 2, width: '100%' }}>
+              <TextField
+                label="Deja tu calificación"
+                multiline
+                rows={4}
+                variant="outlined"
+                value={feedback}
+                onChange={handleFeedbackChange}
+                sx={{ width: '80%' }}
+              />
+              <Button
+                variant="contained"
+                sx={{
+                  mt: 2,
+                  width: '80%',
+                  fontFamily: '"Montserrat", poppins;',
+                  bgcolor: '#FD4A5C',
+                  color: 'white',
+                  borderRadius: '8px',
+                  padding: '6px 12px',
+                  textTransform: 'none',
+                  fontSize: '12px',
+                  boxShadow: 'none',
+                  '&:hover': {
+                    bgcolor: '#b71c1c',
+                    boxShadow: 'none'
+                  }
+                }}
+                onClick={handleSubmitFeedback}
+              >
+                Enviar Calificación
+              </Button>
             </Box>
           </Container>
         )} />
