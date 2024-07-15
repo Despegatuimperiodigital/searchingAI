@@ -562,17 +562,25 @@ const SearchBar = () => {
               <TextField
                 label="Deja tu calificación"
                 multiline
-                rows={4}
+                rows={2}  
                 variant="outlined"
                 value={feedback}
                 onChange={handleFeedbackChange}
-                sx={{ width: '80%' }}
+                sx={{
+                  width: '80%',
+                  '& .MuiOutlinedInput-root': {
+                    padding: '8px 12px', 
+                  },
+                  '& .MuiInputBase-input': {
+                    height: '1.5em',  
+                  },
+                }}
               />
               <Button
                 variant="contained"
                 sx={{
                   mt: 2,
-                  width: '80%',
+                  width: '40%',
                   fontFamily: '"Montserrat", poppins;',
                   bgcolor: '#FD4A5C',
                   color: 'white',
@@ -588,7 +596,7 @@ const SearchBar = () => {
                 }}
                 onClick={handleSubmitFeedback}
               >
-                Enviar Calificación
+                ENVIAR
               </Button>
             </Box>
           </Container>
