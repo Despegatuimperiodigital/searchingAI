@@ -128,7 +128,7 @@ const SearchBar = () => {
       setLoading(false);
     }, 2000);
 
-    const promp = `{
+    const prompt = `{
     "query": ${searchText},
     "propiedades": [
       {
@@ -315,9 +315,6 @@ const SearchBar = () => {
 }`
 
 
-
-    // try {
-
     //   const existingSearches = await fetchBusquedasGuardadas();
     //   const similarQuery = checkSimilarity(searchText, existingSearches.map(item => item.query));
 
@@ -326,39 +323,31 @@ const SearchBar = () => {
     //     setMensaje("Resultados obtenidos del cache.");
     //   } else {
     //     // Realiza la búsqueda normalmente si no se encuentra una búsqueda similar
-    //     const formulario = await enviarGPT(data, promp);
+    try {
+      const response = await fetch('http://149.50.139.22:4008/api/searchAI/crear', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ prompt,searchText }), // Envía el prompt como JSON
+      });
 
+      if (!response.ok) {
+        throw new Error(`Error en la petición: ${response.status}`);
+      }
 
-    //   setMensaje(formulario.message)
-    //   setResults(formulario.propiedades)
-    //     // Aquí podrías también guardar la nueva búsqueda en el servidor
-    //   }
+      const data = await response.json();
+      console.log('Respuesta del servidor:', data);
+      setMensaje(data.message)
+      setResults(data.propiedades)
 
+    } catch (error) {
+      console.error('Error al enviar la petición:', error);
+    }
 
-
-    //   // Guardar búsqueda en el servidor
-    //   const saveSearchResponse = await fetch('https://prueba.ciss.cl/wp-json/searchia/v1/guardar-busqueda/', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify({
-    //       searchText,
-    //       results: formulario.propiedades,
-    //     }),
-    //   });
-
-    //   if (!saveSearchResponse.ok) {
-    //     throw new Error('Error guardando búsqueda');
-    //   }
-    // } 
-    // catch (error) {
-    //   // Manejo de errores si alguna promesa es rechazada
-    //   console.error("Error al generar el formulario:", error);
-    // }
-    // finally {
-    //   setLoading(false); // Desactiva el spinner independientemente del resultado de la solicitud
-    // }
+    finally {
+     setLoading(false); // Desactiva el spinner independientemente del resultado de la solicitud
+    }
 
 
   };
@@ -410,7 +399,7 @@ const SearchBar = () => {
               <TextField
                 variant="outlined"
                 fullWidth
-                label="Quiero un departamento de 3 dormitorios 2 baños"
+                label="Cuéntanos qué buscas..."
                 className={searchText ? 'hidden-label' : ''}
                 sx={{
                   "& .MuiInputLabel-root": {
