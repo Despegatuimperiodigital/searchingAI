@@ -63,7 +63,7 @@ const ResultsBox = ({ properties }) => {
         };
     }, []);
 
-    //Ver que propiedades trae
+    //Ver que propiedades trae el arreglo
     useEffect(() => {
         console.log("Propiedades:", properties);
     }, [properties]);
@@ -76,8 +76,8 @@ const ResultsBox = ({ properties }) => {
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 5000,
-        nextArrow: <NextArrow windowWidth={windowWidth} />,
-        prevArrow: <PrevArrow windowWidth={windowWidth} />,
+        nextArrow: properties.length > 3 ? <NextArrow windowWidth={windowWidth} /> : null,
+        prevArrow: properties.length > 3 ? <PrevArrow windowWidth={windowWidth} /> : null,
         responsive: [
             {
                 breakpoint: 1024,
@@ -93,7 +93,9 @@ const ResultsBox = ({ properties }) => {
                 settings: {
                     slidesToShow: 1,
                     slidesToScroll: 1,
-                    initialSlide: 1
+                    initialSlide: 1,
+                    nextArrow: properties.length > 1 ? <NextArrow windowWidth={windowWidth} /> : null,
+                    prevArrow: properties.length > 1 ? <PrevArrow windowWidth={windowWidth} /> : null,
                 }
             }
         ]
