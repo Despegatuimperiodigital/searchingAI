@@ -194,6 +194,7 @@ const SearchBar = () => {
       },
       {
           "title": "Parque Huertos",
+          "thumbnail": "https://ciss.cl/wp-content/uploads/2022/11/parque-huertos.png",
           "link": "https://ciss.cl/Propiedades/parque-huertos-2/",
           "price": "3.009 UF",
           "habitaciones": "1 a 3 Dorms",
@@ -329,7 +330,7 @@ const SearchBar = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ prompt,searchText }), // Envía el prompt como JSON
+        body: JSON.stringify({ prompt, searchText }), // Envía el prompt como JSON
       });
 
       if (!response.ok) {
@@ -346,7 +347,7 @@ const SearchBar = () => {
     }
 
     finally {
-     setLoading(false); // Desactiva el spinner independientemente del resultado de la solicitud
+      setLoading(false); // Desactiva el spinner independientemente del resultado de la solicitud
     }
 
 
@@ -551,17 +552,17 @@ const SearchBar = () => {
               <TextField
                 label="Deja tu calificación"
                 multiline
-                rows={2}  
+                rows={2}
                 variant="outlined"
                 value={feedback}
                 onChange={handleFeedbackChange}
                 sx={{
                   width: '80%',
                   '& .MuiOutlinedInput-root': {
-                    padding: '8px 12px', 
+                    padding: '8px 12px',
                   },
                   '& .MuiInputBase-input': {
-                    height: '1.5em',  
+                    height: '1.5em',
                   },
                 }}
               />

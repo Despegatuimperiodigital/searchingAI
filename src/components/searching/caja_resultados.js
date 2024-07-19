@@ -63,9 +63,14 @@ const ResultsBox = ({ properties }) => {
         };
     }, []);
 
+    //Ver que propiedades trae
+    useEffect(() => {
+        console.log("Propiedades:", properties);
+    }, [properties]);
+
     const settings = {
         dots: false,
-        infinite: true,
+        infinite: false,
         speed: 2000,
         slidesToShow: 3,
         slidesToScroll: 1,
@@ -79,7 +84,7 @@ const ResultsBox = ({ properties }) => {
                 settings: {
                     slidesToShow: 2,
                     slidesToScroll: 1,
-                    infinite: true,
+                    infinite: false,
                     dots: false
                 }
             },
