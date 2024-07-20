@@ -102,7 +102,8 @@ const SearchBar = () => {
     });
   };
 
-  const handleSearch = async () => {
+  const handleSearch = async (event) => {
+    if (event) event.preventDefault(); // Evita que el formulario se envíe automáticamente
     setLoading(true);
     setStatistics(prevStats => ({
       ...prevStats,
@@ -396,136 +397,143 @@ const SearchBar = () => {
         <Route path="/statistics" element={<Statistics statistics={statistics} />} /> {/* Ruta para estadísticas */}
         <Route path="/" element={(
           <Container className="search-container">
-            <Box className="box">
-              <TextField
-                variant="outlined"
-                fullWidth
-                label="Cuéntanos qué buscas..."
-                className={searchText ? 'hidden-label' : ''}
-                sx={{
-                  "& .MuiInputLabel-root": {
-                    fontFamily: '"Montserrat", "Poppins", sans-serif',
-                    fontSize: '14px',
-                    marginLeft: '10px',
-                    top: '50%',
-                    transform: 'translateY(-50%)'
-                  },
-                  "& .MuiOutlinedInput-root": {
-                    background: '#FFF',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    alignItems: 'stretch',
-                    height: '30px', // Altura del input
-                    "& fieldset": {
-                      border: 'none' // Elimina el borde
+            <form onSubmit={handleSearch}>
+              <Box className="box">
+                <TextField
+                  variant="outlined"
+                  fullWidth
+                  label="Cuéntanos qué buscas..."
+                  className={searchText ? 'hidden-label' : ''}
+                  sx={{
+                    "& .MuiInputLabel-root": {
+                      fontFamily: '"Montserrat", "Poppins", sans-serif',
+                      fontSize: '14px',
+                      marginLeft: '10px',
+                      top: '50%',
+                      transform: 'translateY(-50%)'
                     },
-                    "&:hover fieldset": {
-                      border: 'none'  // Elimina el borde al pasar el mouse
+                    "& .MuiOutlinedInput-root": {
+                      background: '#FFF',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'center',
+                      alignItems: 'stretch',
+                      height: '30px', // Altura del input
+                      "& fieldset": {
+                        border: 'none' // Elimina el borde
+                      },
+                      "&:hover fieldset": {
+                        border: 'none'  // Elimina el borde al pasar el mouse
+                      },
+                      "&.Mui-focused fieldset": {
+                        border: 'none'  // Elimina el borde cuando está enfocado
+                      }
                     },
-                    "&.Mui-focused fieldset": {
-                      border: 'none'  // Elimina el borde cuando está enfocado
+                    borderRadius: '4px 0 0 4px',
+                    marginRight: '-1px',
+                    margin: 'auto' // Centra horizontalmente el TextField
+                  }}
+                  value={searchText}
+                  onChange={handleInputChange}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter') {
+                      handleSearch(event);
                     }
-                  },
-                  borderRadius: '4px 0 0 4px',
-                  marginRight: '-1px',
-                  margin: 'auto' // Centra horizontalmente el TextField
-                }}
-                value={searchText}
-                onChange={handleInputChange}
-              />
+                  }}
+                />
 
-              <ToggleButtonGroup
-                value={selected}
-                exclusive
-                onChange={handleAlignment}
-                aria-label="project filter"
-                sx={{
-                  width: '100%', // Asegura que ocupa todo el espacio disponible
-                  backgroundColor: 'transparent',
-                  boxShadow: 'none',
-                  '& .MuiToggleButtonGroup-grouped': {
-                    margin: '0 8px',
-                    border: 0,
-                    '&:not(:first-of-type)': {
-                      borderRadius: '20px',
-                    },
-                    '&:first-of-type': {
-                      borderRadius: '20px',
-                    },
-                  }
-                }}
-              >
-                <ToggleButton value="subsidio" aria-label="left aligned" sx={{ textTransform: 'none', fontSize: '0.875rem' }}>
-                  <Box sx={{
-                    display: 'flex',
-                    alignItems: 'center', // Centra verticalmente
-                    justifyContent: 'center', // Centra horizontalmente
-                    width: '100%', // Usa todo el ancho del botón
-                  }}>
+                <ToggleButtonGroup
+                  value={selected}
+                  exclusive
+                  onChange={handleAlignment}
+                  aria-label="project filter"
+                  sx={{
+                    width: '100%', // Asegura que ocupa todo el espacio disponible
+                    backgroundColor: 'transparent',
+                    boxShadow: 'none',
+                    '& .MuiToggleButtonGroup-grouped': {
+                      margin: '0 8px',
+                      border: 0,
+                      '&:not(:first-of-type)': {
+                        borderRadius: '20px',
+                      },
+                      '&:first-of-type': {
+                        borderRadius: '20px',
+                      },
+                    }
+                  }}
+                >
+                  <ToggleButton value="subsidio" aria-label="left aligned" sx={{ textTransform: 'none', fontSize: '0.875rem' }}>
                     <Box sx={{
-                      width: 16,
-                      height: 16,
-                      borderRadius: '50%',
-                      backgroundColor: selected === "subsidio" ? 'red' : '#ccc',
-                      transition: 'all 0.3s ease',
-                      transform: selected === "subsidio" ? 'translateX(20px)' : 'translateX(0)',
-                      marginRight: 1,
-                    }} />
-                    <Typography sx={{ fontFamily: "Montserrat, poppins", fontSize: '10px', width: '80%', textAlign: 'left', pl: 2 }}>
-                      Proyectos con subsidio
-                    </Typography>
-                  </Box>
-                </ToggleButton>
-                <ToggleButton value="inversion" aria-label="centered" sx={{ textTransform: 'none', fontSize: '0.875rem' }}>
-                  <Box sx={{
-                    display: 'flex',
-                    alignItems: 'center', // Centra verticalmente
-                    justifyContent: 'center', // Centra horizontalmente
-                    width: '100%', // Usa todo el ancho del botón
-                  }}>
+                      display: 'flex',
+                      alignItems: 'center', // Centra verticalmente
+                      justifyContent: 'center', // Centra horizontalmente
+                      width: '100%', // Usa todo el ancho del botón
+                    }}>
+                      <Box sx={{
+                        width: 16,
+                        height: 16,
+                        borderRadius: '50%',
+                        backgroundColor: selected === "subsidio" ? 'red' : '#ccc',
+                        transition: 'all 0.3s ease',
+                        transform: selected === "subsidio" ? 'translateX(20px)' : 'translateX(0)',
+                        marginRight: 1,
+                      }} />
+                      <Typography sx={{ fontFamily: "Montserrat, poppins", fontSize: '10px', width: '80%', textAlign: 'left', pl: 2 }}>
+                        Proyectos con subsidio
+                      </Typography>
+                    </Box>
+                  </ToggleButton>
+                  <ToggleButton value="inversion" aria-label="centered" sx={{ textTransform: 'none', fontSize: '0.875rem' }}>
                     <Box sx={{
-                      width: 16,
-                      height: 16,
-                      borderRadius: '50%',
-                      backgroundColor: selected === "inversion" ? 'red' : '#ccc',
-                      transition: 'all 0.3s ease',
-                      transform: selected === "inversion" ? 'translateX(20px)' : 'translateX(0)',
-                      marginRight: 1,
-                    }} />
-                    <Typography sx={{ fontFamily: "Montserrat, poppins", fontSize: '10px', width: '80%', textAlign: 'left', pl: 2 }}>
-                      Ideales para inversión
-                    </Typography>
-                  </Box>
-                </ToggleButton>
-              </ToggleButtonGroup>
+                      display: 'flex',
+                      alignItems: 'center', // Centra verticalmente
+                      justifyContent: 'center', // Centra horizontalmente
+                      width: '100%', // Usa todo el ancho del botón
+                    }}>
+                      <Box sx={{
+                        width: 16,
+                        height: 16,
+                        borderRadius: '50%',
+                        backgroundColor: selected === "inversion" ? 'red' : '#ccc',
+                        transition: 'all 0.3s ease',
+                        transform: selected === "inversion" ? 'translateX(20px)' : 'translateX(0)',
+                        marginRight: 1,
+                      }} />
+                      <Typography sx={{ fontFamily: "Montserrat, poppins", fontSize: '10px', width: '80%', textAlign: 'left', pl: 2 }}>
+                        Ideales para inversión
+                      </Typography>
+                    </Box>
+                  </ToggleButton>
+                </ToggleButtonGroup>
 
-              <Button
-                variant="contained"
-                sx={{
-                  width: '80%',
-                  marginBottom: '5px',
-                  fontFamily: '"Montserrat", poppins;',
-                  lineHeight: '1',
-                  bgcolor: '#FD4A5C', // Color de fondo rojo
-                  color: 'white', // Texto en color blanco
-                  borderRadius: '8px', // Bordes redondeados
-                  padding: '6px 12px', // Padding interno
-                  textTransform: 'none', // Evita que el texto se transforme en mayúsculas
-                  fontSize: '12px', // Tamaño del texto
-                  boxShadow: 'none', // Sin sombra
-                  '&:hover': {
-                    bgcolor: '#b71c1c', // Color al pasar el mouse
-                    boxShadow: 'none' // Sin sombra al pasar el mouse
-                  }
-                }}
-                endIcon={<ArrowForwardIcon />}
-                onClick={handleSearch}
-              >
-                VER PROYECTOS
-              </Button>
+                <Button
+                  variant="contained"
+                  sx={{
+                    width: '80%',
+                    marginBottom: '5px',
+                    fontFamily: '"Montserrat", poppins;',
+                    lineHeight: '1',
+                    bgcolor: '#FD4A5C', // Color de fondo rojo
+                    color: 'white', // Texto en color blanco
+                    borderRadius: '8px', // Bordes redondeados
+                    padding: '6px 12px', // Padding interno
+                    textTransform: 'none', // Evita que el texto se transforme en mayúsculas
+                    fontSize: '12px', // Tamaño del texto
+                    boxShadow: 'none', // Sin sombra
+                    '&:hover': {
+                      bgcolor: '#b71c1c', // Color al pasar el mouse
+                      boxShadow: 'none' // Sin sombra al pasar el mouse
+                    }
+                  }}
+                  endIcon={<ArrowForwardIcon />}
+                  onClick={handleSearch}
+                >
+                  VER PROYECTOS
+                </Button>
 
-            </Box>
+              </Box>
+            </form>
             {loading ? (
               <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
                 <CircularProgress />
