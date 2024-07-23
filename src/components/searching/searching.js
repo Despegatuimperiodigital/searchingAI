@@ -104,6 +104,8 @@ const SearchBar = () => {
 
   const handleSearch = async (event) => {
     if (event) event.preventDefault(); // Evita que el formulario se envíe automáticamente
+    setResults([]); 
+    setMensaje(''); 
     setLoading(true);
     setStatistics(prevStats => ({
       ...prevStats,
@@ -173,7 +175,7 @@ const SearchBar = () => {
           "title": "Fuentes de Porvenir 2",
           "thumbnail": "https://ciss.cl/wp-content/uploads/2024/03/Fuentes-de-porvenir-2.jpg",
           "link": "https://ciss.cl/Propiedades/fuentes-de-porvenir-2/",
-          "price": "Precio: 1.600 UF",
+          "price": "1.600 UF",
           "habitaciones": "3 Dorms",
           "ciudad": "Chiguayante",
           "baños": "1 a 2",
@@ -571,31 +573,40 @@ const SearchBar = () => {
                   },
                   '& .MuiInputBase-input': {
                     height: '1.5em',
+                    fontSize: '14px',
+                  },
+                  '& .MuiInputLabel-root': {
+                    fontFamily: '"Montserrat", poppins;',
+                    fontSize: '14px',
+                  },
+                  '& .MuiOutlinedInput-input': {
+                    fontFamily: '"Montserrat", poppins;',
                   },
                 }}
               />
-              <Button
-                variant="contained"
-                sx={{
-                  mt: 2,
-                  width: '40%',
-                  fontFamily: '"Montserrat", poppins;',
-                  bgcolor: '#FD4A5C',
-                  color: 'white',
-                  borderRadius: '8px',
-                  padding: '6px 12px',
-                  textTransform: 'none',
-                  fontSize: '12px',
-                  boxShadow: 'none',
-                  '&:hover': {
-                    bgcolor: '#b71c1c',
-                    boxShadow: 'none'
-                  }
-                }}
-                onClick={handleSubmitFeedback}
-              >
-                ENVIAR
-              </Button>
+              <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2, width: '100%' }}>
+                <Button
+                  variant="contained"
+                  sx={{
+                    width: '40%',
+                    fontFamily: '"Montserrat", poppins;',
+                    bgcolor: '#FD4A5C',
+                    color: 'white',
+                    borderRadius: '8px',
+                    padding: '6px 12px',
+                    textTransform: 'none',
+                    fontSize: '12px',
+                    boxShadow: 'none',
+                    '&:hover': {
+                      bgcolor: '#b71c1c',
+                      boxShadow: 'none'
+                    }
+                  }}
+                  onClick={handleSubmitFeedback}
+                >
+                  ENVIAR
+                </Button>
+              </Box>
             </Box>
           </Container>
         )} />
