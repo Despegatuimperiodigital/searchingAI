@@ -102,10 +102,10 @@ const SearchBar = () => {
     });
   };
 
-  const handleSearch = async (event) => {
+  const handleSearch = (event) => {
     if (event) event.preventDefault(); // Evita que el formulario se envíe automáticamente
-    setResults([]); 
-    setMensaje(''); 
+    setResults([]);
+    setMensaje('');
     setLoading(true);
     setStatistics(prevStats => ({
       ...prevStats,
@@ -126,12 +126,12 @@ const SearchBar = () => {
       wordFrequency: newWordFrequency,
       phraseFrequency: newPhraseFrequency
     }));
+  };
 
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-
-    const prompt = `{
+  useEffect(() => {
+    if (loading) {
+      const fetchData = async () => {
+        const prompt = `{
     "query": ${searchText},
     "propiedades": [
       {
@@ -316,45 +316,46 @@ const SearchBar = () => {
           "m2": "73"
       }
   ]
-}`
+}`;
 
 
-    //   const existingSearches = await fetchBusquedasGuardadas();
-    //   const similarQuery = checkSimilarity(searchText, existingSearches.map(item => item.query));
+        //   const existingSearches = await fetchBusquedasGuardadas();
+        //   const similarQuery = checkSimilarity(searchText, existingSearches.map(item => item.query));
 
-    //   if (similarQuery) {
-    //     setResults(formulario.propiedades); // Asume que los resultados están almacenados de esta manera
-    //     setMensaje("Resultados obtenidos del cache.");
-    //   } else {
-    //     // Realiza la búsqueda normalmente si no se encuentra una búsqueda similar
-    try {
-      const response = await fetch('http://149.50.139.22:4008/api/searchAI/crear', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ prompt, searchText }), // Envía el prompt como JSON
-      });
+        //   if (similarQuery) {
+        //     setResults(formulario.propiedades); // Asume que los resultados están almacenados de esta manera
+        //     setMensaje("Resultados obtenidos del cache.");
+        //   } else {
+        //     // Realiza la búsqueda normalmente si no se encuentra una búsqueda similar
+        ;
 
-      if (!response.ok) {
-        throw new Error(`Error en la petición: ${response.status}`);
-      }
+        try {
+          const response = await fetch('http://149.50.139.22:4008/api/searchAI/crear', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ prompt, searchText }), // Envía el prompt como JSON
+          });
 
-      const data = await response.json();
-      console.log('Respuesta del servidor:', data);
-      setMensaje(data.message)
-      setResults(data.propiedades)
+          if (!response.ok) {
+            throw new Error(`Error en la petición: ${response.status}`);
+          }
 
-    } catch (error) {
-      console.error('Error al enviar la petición:', error);
+          const data = await response.json();
+          console.log('Respuesta del servidor:', data);
+          setMensaje(data.message);
+          setResults(data.propiedades);
+        } catch (error) {
+          console.error('Error al enviar la petición:', error);
+        } finally {
+          setLoading(false); // Desactiva el spinner independientemente del resultado de la solicitud
+        }
+      };
+
+      fetchData();
     }
-
-    finally {
-      setLoading(false); // Desactiva el spinner independientemente del resultado de la solicitud
-    }
-
-
-  };
+  }, [loading, searchText]);
 
 
   const getMostFrequent = (obj) => {
