@@ -32,11 +32,13 @@ const SearchBar = () => {
 
   const handleLike = () => {
     setLike(!like);
+    console.log('Like:', !like); 
     if (dislike) setDislike(false);
   };
 
   const handleDislike = () => {
     setDislike(!dislike);
+    console.log('Dislike:', !dislike); 
     if (like) setLike(false);
   };
   const handleFeedbackChange = (event) => {
