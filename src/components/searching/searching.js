@@ -41,6 +41,7 @@ const SearchBar = () => {
     console.log('Dislike:', !dislike); 
     if (like) setLike(false);
   };
+  
   const handleFeedbackChange = (event) => {
     setFeedback(event.target.value);
   };
