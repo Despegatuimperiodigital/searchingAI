@@ -72,8 +72,10 @@ const SearchBar = () => {
   }
 
   const handleAlignment = (event, newAlignment) => {
-    if (newAlignment !== null) {
-      setSelected(newAlignment);
+    if (newAlignment === selected) {
+      setSelected(''); // Si el mismo filtro se selecciona de nuevo, deselecciónalo
+    } else {
+      setSelected(newAlignment); // De lo contrario, selecciona el nuevo filtro
       setStatistics(prevStats => ({
         ...prevStats,
         boxClicks: {
@@ -83,6 +85,7 @@ const SearchBar = () => {
       }));
     }
   };
+  
 
   const filteredProperties = results.filter(property => {
     if (selected === 'subsidio') {
