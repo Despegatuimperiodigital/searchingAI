@@ -332,7 +332,7 @@ const SearchBar = () => {
         ;
 
         try {
-          const response = await fetch('http://149.50.139.22:4008/api/searchAI/crear', {
+          const response = await fetch('https://api.despegatuimperiodigital.com/api/searchAI/crear', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
