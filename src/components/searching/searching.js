@@ -32,16 +32,16 @@ const SearchBar = () => {
 
   const handleLike = () => {
     setLike(!like);
-    console.log('Like:', !like); 
+    console.log('Like:', !like);
     if (dislike) setDislike(false);
   };
 
   const handleDislike = () => {
     setDislike(!dislike);
-    console.log('Dislike:', !dislike); 
+    console.log('Dislike:', !dislike);
     if (like) setLike(false);
   };
-  
+
   const handleFeedbackChange = (event) => {
     setFeedback(event.target.value);
   };
@@ -53,15 +53,25 @@ const SearchBar = () => {
 
   useEffect(() => {
     const filteredProperties = data.filter(property => {
-      if (selected === 'subsidio') {
-        return property.tipo_subsidio === 'subsidio' || property.tipo_subsidio === 'DS19';
-      } else if (selected === 'inversion') {
-        return property.tipo_subsidio === 'Inversión';
-      }
-      return true; // Muestra todas las propiedades si no hay selección
+      const tipoSubsidio = property.tipo_subsidio.toLowerCase();
+
+      // Filtrar por tipo de subsidio
+      const matchesSubsidio = selected === 'subsidio'
+        ? tipoSubsidio.includes('subsidio') || tipoSubsidio === 'ds19' || tipoSubsidio === 'ds1-t3'
+        : selected === 'inversion'
+          ? tipoSubsidio.includes('inversión')
+          : true;
+
+      // Filtrar por texto de búsqueda
+      const matchesSearchText = searchText
+        ? property.title.toLowerCase().includes(searchText.toLowerCase())
+        : true;
+
+      return matchesSubsidio && matchesSearchText;
     });
+
     setResults(filteredProperties);
-  }, [selected]);
+  }, [selected, searchText, data]);
 
   const handleInputChange = (event) => {
     setSearchText(event.target.value);
@@ -73,29 +83,15 @@ const SearchBar = () => {
   }
 
   const handleAlignment = (event, newAlignment) => {
-    if (newAlignment === selected) {
-      setSelected(''); // Si el mismo filtro se selecciona de nuevo, deselecciónalo
-    } else {
-      setSelected(newAlignment); // De lo contrario, selecciona el nuevo filtro
-      setStatistics(prevStats => ({
-        ...prevStats,
-        boxClicks: {
-          ...prevStats.boxClicks,
-          [newAlignment]: prevStats.boxClicks[newAlignment] + 1
-        }
-      }));
-    }
+    setSelected(prevSelected => prevSelected === newAlignment ? '' : newAlignment);
+    setStatistics(prevStats => ({
+      ...prevStats,
+      boxClicks: {
+        ...prevStats.boxClicks,
+        [newAlignment]: prevStats.boxClicks[newAlignment] + 1
+      }
+    }));
   };
-  
-
-  const filteredProperties = results.filter(property => {
-    if (selected === 'subsidio') {
-      return property.tipo_de_proyecto.includes('subsidio');
-    } else if (selected === 'inversion') {
-      return property.tipo_de_proyecto.includes('inversión');
-    }
-    return true; // Si no hay selección, muestra todas las propiedades
-  });
 
   const handlePropertyClick = (index, count) => {
     setStatistics(prevStats => {
