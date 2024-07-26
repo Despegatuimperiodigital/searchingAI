@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './estilos.css';
+import '../../fonts.css';
 
 function Login() {
     const [username, setUsername] = useState('');
