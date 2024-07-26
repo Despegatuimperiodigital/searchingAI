@@ -11,7 +11,7 @@ body {
     color: white;
 }
 
-.register-container {
+.register-container, .login-container {
     background-color: rgba(0, 0, 0, 0.6);
     padding: 40px;
     border-radius: 10px;
@@ -54,7 +54,7 @@ input[type="password"] {
     height: 35px; 
     border: 1px solid rgba(255, 255, 255, 0.5); 
     color: white; 
-    
+    outline: none;
 }
 
 button[type="submit"] {
@@ -70,10 +70,30 @@ button[type="submit"] {
     font-family: "IBM Plex Sans", sans-serif;
     font-weight: 300;
     height: 40px; 
-
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
 }
 
 button[type="submit"]:hover {
     transform: scale(1.05); /* Zoom al hacer hover */
 }
 
+.password-field {
+    position: relative;
+}
+
+.show-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-15%);
+    cursor: pointer;
+    color: white;
+    user-select: none;
+}
+
+.show-password svg {
+    width: 15px;
+    height: 15px;
+}

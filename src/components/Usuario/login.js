@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import './estilos.css';
 import '../../fonts.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -15,7 +18,7 @@ function Login() {
     };
 
     return (
-        <div className="App">
+        <div className="login-container">
             <h2>Login</h2>
             <form onSubmit={handleSubmit} className="login-form">
                 <div className="form-group">
@@ -28,15 +31,21 @@ function Login() {
                         required
                     />
                 </div>
-                <div className="form-group">
+                <div className="form-group password-field">
                     <label htmlFor="password">Password:</label>
                     <input
-                        type="password"
+                 type={showPassword ? "text" : "password"}
                         id="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
+                    <span
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="show-password"
+                    >
+                        <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+                    </span>
                 </div>
                 <button type="submit">Login</button>
             </form>
