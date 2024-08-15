@@ -48,6 +48,13 @@ const SearchBar = () => {
 
   const handleSubmitFeedback = () => {
     console.log('Calificación:', feedback);
+    const newFeedback = {
+      searchText,
+      feedback,
+      like,
+      dislike,
+    };
+    console.log('Feedback registrado:', newFeedback);
     setFeedback('');
   };
 
@@ -552,13 +559,14 @@ const SearchBar = () => {
                 <ResultsBox properties={results} onPropertyClick={handlePropertyClick} />
               </Box>
             )}
+
             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', mt: 2 }}>
-              <IconButton onClick={handleLike} color={like ? "primary" : "default"}>
-                <ThumbUpIcon />
-              </IconButton>
-              <IconButton onClick={handleDislike} color={dislike ? "primary" : "default"}>
-                <ThumbDownIcon />
-              </IconButton>
+              <Button onClick={handleLike}>
+                <ThumbUpIcon color={like ? 'primary' : 'action'} />
+              </Button>
+              <Button onClick={handleDislike}>
+                <ThumbDownIcon color={dislike ? 'primary' : 'action'} />
+              </Button>
             </Box>
 
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 2, width: '100%' }}>
