@@ -1,0 +1,15 @@
+# docker-compose.yml
+
+services:
+  frontend:
+    container_name: app-dev-c
+    image: app-dev-i
+    build: 
+      context: . 
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"  # Mapear el puerto 5173 del contenedor al puerto 5173 del host
+    volumes:
+      - .:/app/frontend # Montar el directorio del frontend en el contenedor para desarrollo en vivo
+   
+    # Puedes agregar más variables de entorno si son necesarias
