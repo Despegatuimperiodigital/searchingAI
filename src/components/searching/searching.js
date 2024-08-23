@@ -81,10 +81,194 @@ const SearchBar = () => {
     }, 2000);
 
 
+    const prompt = `{
+    "query": ${searchText},
+    "propiedades": [
+      {
+          "title": "Fuentes de Lomas II",
+          "thumbnail": "https://ciss.cl/wp-content/uploads/2022/09/Fuentes-de-Lomas-II-Destacada-1024x671.jpg",
+          "link": "https://ciss.cl/Propiedades/fuentes-de-lomas-2/",
+          "link_target_attr": "_blank",
+          "price": "3.005 UF",
+          "habitaciones": "Habitaciones 3",
+          "ciudad": "Concepción",
+          "baños": "2",
+          "tipo_subsidio": "En Verde",
+          "tipo_de_proyecto": "Nuevo Proyecto",
+          "m2": "67.1 m2"
+      },
+      {
+          "title": "Fuentes de Piedra IV",
+          "thumbnail": "https://ciss.cl/wp-content/uploads/2023/06/fuentes-de-piedra-iv-1024x671.png",
+          "link": "https://ciss.cl/Propiedades/fuentes-de-piedra-iv/",
+          "price": "2.600 UF",
+          "habitaciones": "Habitaciones 3",
+          "ciudad": "Concepción",
+          "baños": "2",
+          "tipo_subsidio": "DS19",
+          "tipo_de_proyecto": "En Verde",
+          "m2": "59.5 a 66.5"
+      },
+      {
+          "title": "Fuentes de Miguel Collao",
+          "thumbnail": "https://ciss.cl/wp-content/uploads/2024/02/imagen-destacada-Miguel-Collao.jpg",
+          "link": "https://ciss.cl/Propiedades/fuentes-de-miguel-collao/",
+          "price": "3.340 UF",
+          "habitaciones": "Habitaciones 3",
+          "ciudad": "Concepción",
+          "baños": "2",
+          "tipo_subsidio": "En Verde",
+          "tipo_de_proyecto": "Nuevo Proyecto",
+          "m2": "67.1 m2"
+      },
+      {
+          "title": "Fuentes de Porvenir 2",
+          "thumbnail": "https://ciss.cl/wp-content/uploads/2024/03/Fuentes-de-porvenir-2.jpg",
+          "link": "https://ciss.cl/Propiedades/fuentes-de-porvenir-2/",
+          "price": "Precio: 1.600 UF",
+          "habitaciones": "Habitaciones 3",
+          "ciudad": "Chiguayante",
+          "baños": "1 a 2",
+          "tipo_subsidio": "En verde",
+          "tipo_de_proyecto": "Nuevo Proyecto",
+          "m2": "66,6 m2"
+      },
+      {
+          "title": "Edificio Peumayen",
+          "thumbnail": "https://ciss.cl/wp-content/uploads/2022/11/peumayén.png",
+          "link": "https://ciss.cl/Propiedades/edificio-peumayen-3/",
+          "price": "4.790 UF",
+          "habitaciones": "Habitaciones 2 a 3",
+          "ciudad": "Lomas San Sebastián",
+          "baños": "2",
+          "tipo_subsidio": "Inversión",
+          "tipo_de_proyecto": "En Verde",
+          "m2": "66.94 a 114.35 m2"
+      },
+      {
+          "title": "Parque Huertos",
+          "link": "https://ciss.cl/Propiedades/parque-huertos-2/",
+          "price": "3.009 UF",
+          "habitaciones": "Habitaciones 1 a 3",
+          "ciudad": "Huertos Familiares",
+          "baños": "1 a 2",
+          "tipo_subsidio": "Inversión",
+          "tipo_de_proyecto": "Venta en Verde",
+          "m2": "42.91 a 112.76"
+      },
+      {
+          "title": "Mirador Oceánico",
+          "thumbnail": "https://ciss.cl/wp-content/uploads/2022/07/mirador.png",
+          "link": "https://ciss.cl/Propiedades/mirador-oceanico/",
+          "price": "3772 UF",
+          "habitaciones": "Habitaciones 1 a 3",
+          "ciudad": "Andalue",
+          "baños": "1 a 3",
+          "tipo_subsidio": "Inversión",
+          "tipo_de_proyecto": "En Verde",
+          "m2": "58.32 a 168.12 m2"
+      },
+      {
+          "title": "Edificio Rozas Condell",
+          "thumbnail": "https://ciss.cl/wp-content/uploads/2022/07/Edificio-Rozas.jpg",
+          "link": "https://ciss.cl/Propiedades/edificio-rozas-condell/",
+          "price": "2.613 UF",
+          "habitaciones": "Habitaciones 1 a 3",
+          "ciudad": "Concepción",
+          "baños": "1 a 2",
+          "tipo_subsidio": "Inversión",
+          "tipo_de_proyecto": "En Verde",
+          "m2": "34.02 a 67,3"
+      },
+      {
+          "title": "Edificio Roosevelt",
+          "thumbnail": "https://ciss.cl/wp-content/uploads/2022/01/Roosevelt-destacada-1024x671.jpg",
+          "link": "https://ciss.cl/Propiedades/edificio-roosevelt/",
+          "price": "8.000 UF",
+          "habitaciones": "Habitaciones 3",
+          "ciudad": "Concepción",
+          "baños": "3",
+          "tipo_subsidio": "Inversión",
+          "tipo_de_proyecto": "En Verde",
+          "m2": "111.65 a 189.33"
+      },
+      {
+          "title": "Fuentes de Porvenir",
+          "thumbnail": "https://ciss.cl/wp-content/uploads/2022/03/imagen-destacada.jpg",
+          "link": "https://ciss.cl/Propiedades/fuentes-de-porvenir/",
+          "price": "2.400 UF",
+          "habitaciones": "Habitaciones 3",
+          "ciudad": "Chiguayante",
+          "baños": "2",
+          "tipo_subsidio": "DS19",
+          "tipo_de_proyecto": "Entrega Inmediata",
+          "m2": "66,5 m2"
+      },
+      {
+          "title": "Fuentes de Rucalhue 2",
+          "thumbnail": "https://ciss.cl/wp-content/uploads/2022/01/imagen-destacada-2-1024x671.jpg",
+          "link": "https://ciss.cl/Propiedades/fuentes-de-rucalhue-2/",
+          "price": "2.480 UF",
+          "habitaciones": "Habitaciones 2 a 3",
+          "ciudad": "Hualpén",
+          "baños": "2",
+          "tipo_subsidio": "DS19",
+          "tipo_de_proyecto": "En verde",
+          "m2": "56,4 a 60,9m2"
+      },
+      {
+          "title": "Fuentes de San Pedro",
+          "thumbnail": "https://ciss.cl/wp-content/uploads/2022/01/JYG5732-1-1024x683.jpg",
+          "link": "https://ciss.cl/Propiedades/fuentes-de-san-pedro/",
+          "price": "2.100 UF",
+          "habitaciones": "Habitaciones 2 a 3",
+          "ciudad": "San Pedro de la Paz",
+          "baños": "2",
+          "tipo_subsidio": "DS19",
+          "tipo_de_proyecto": "Entrega Inmediata",
+          "m2": "56 a 60,8m2"
+      },
+      {
+          "title": "Edificio New Center",
+          "thumbnail": "https://ciss.cl/wp-content/uploads/2022/01/Roosevelt-destacada-1536x1006-1-1024x671.jpg",
+          "link": "https://ciss.cl/Propiedades/edificio-new-center/",
+          "price": "3023 UF",
+          "habitaciones": "Habitaciones 1 a 2",
+          "ciudad": "Concepción",
+          "baños": "1 a 2",
+          "tipo_subsidio": "Inversión",
+          "tipo_de_proyecto": "",
+          "m2": "Desde 41.31 a 71.8"
+      },
+      {
+          "title": "Fuentes de Prats",
+          "thumbnail": "https://ciss.cl/wp-content/uploads/2022/01/portada-1024x671.jpg",
+          "link": "https://ciss.cl/Propiedades/fuentes-de-prats/",
+          "price": "1.980 UF",
+          "habitaciones": "Habitaciones 3",
+          "ciudad": "Coronel",
+          "baños": "2",
+          "tipo_subsidio": "DS1-T3",
+          "tipo_de_proyecto": "Entrega Inmediata",
+          "m2": "61,6 a 67,2m2"
+      },
+      {
+          "title": "Fuentes de Aeroparque",
+          "thumbnail": "https://ciss.cl/wp-content/uploads/2024/04/Exterior-condominio-1024x576.jpg",
+          "link": "https://ciss.cl/Propiedades/fuentes-de-aeroparque/",
+          "price": "3.799 UF",
+          "habitaciones": "Habitaciones 3",
+          "ciudad": "Concepción",
+          "baños": "2",
+          "tipo_subsidio": "Inversión",
+          "tipo_de_proyecto": "Nuevo proyecto",
+          "m2": "73"
+      }
+  ]
+}`
 
      try {
-      /*
-      const response = await fetch('http://localhost:4008/api/despega-ai/crear', {
+/*       const response = await fetch('http://localhost:4008/api/despega-ai/crear', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -98,39 +282,38 @@ const SearchBar = () => {
 
       const data = await response.json();
       console.log('Respuesta del servidor:', data);
-      */
-      setMensaje(data.message)
-      const prueba= {
-        "conversacion": [
-          {
-            "consulta": "Hola, ¿cómo puedo entrenar un modelo de IA para reconocimiento de imágenes?"
-          },
-          {
-            "respuesta": "Para entrenar un modelo de IA para reconocimiento de imágenes, puedes seguir estos pasos:\n1. Recopilar un conjunto de datos de imágenes etiquetadas.\n2. Elegir una arquitectura de red neuronal convolucional (CNN).\n3. Preprocesar las imágenes.\n4. Dividir el conjunto de datos en entrenamiento y validación.\n5. Entrenar el modelo usando técnicas como transferencia de aprendizaje.\n6. Evaluar y ajustar el modelo según sea necesario."
-          },
-          {
-            "consulta": "¿Cuánto tiempo suele llevar el entrenamiento?"
-          },
-          {
-            "respuesta": "El tiempo de entrenamiento puede variar significativamente dependiendo de varios factores:\n- Tamaño y complejidad del conjunto de datos\n- Arquitectura del modelo elegido\n- Capacidad de procesamiento disponible (CPU/GPU)\n- Hiperparámetros seleccionados\n\nPuede llevar desde unas horas hasta varios días para conjuntos de datos grandes y modelos complejos. Es importante monitorear el progreso y usar técnicas como early stopping para optimizar el tiempo de entrenamiento."
-          },
-          {
-            "consulta": "¿Qué herramientas recomiendas para este tipo de proyecto?"
-          },
-          {
-            "respuesta": "Para proyectos de reconocimiento de imágenes, recomiendo las siguientes herramientas:\n1. TensorFlow o PyTorch como frameworks de aprendizaje profundo\n2. Keras para una API de alto nivel si usas TensorFlow\n3. OpenCV para preprocesamiento de imágenes\n4. Numpy para manipulación de datos\n5. Matplotlib o Seaborn para visualización\n6. Scikit-learn para métricas de evaluación\n7. Google Colab o Kaggle Notebooks si necesitas GPU gratuita en la nube\n8. MLflow para seguimiento de experimentos\n\nEstas herramientas te proporcionarán un ecosistema robusto para desarrollar y entrenar tu modelo de reconocimiento de imágenes."
-          },
-          {
-            "consulta": "Gracias por la información. ¿Algún consejo final?"
-          },
-          {
-            "respuesta": "Por supuesto, aquí tienes algunos consejos finales:\n1. Comienza con un conjunto de datos pequeño para iterar rápidamente.\n2. Utiliza aumento de datos para mejorar la generalización del modelo.\n3. Experimenta con diferentes arquitecturas y compara sus rendimientos.\n4. Presta atención a la calidad de tus datos, la limpieza es crucial.\n5. Utiliza técnicas de regularización para prevenir el sobreajuste.\n6. Mantén un registro detallado de tus experimentos y resultados.\n7. No subestimes la importancia de una buena visualización de resultados.\n8. Considera el uso de modelos pre-entrenados para acelerar el desarrollo.\n\nRecuerda que el aprendizaje automático es un proceso iterativo, así que no te desanimes si no obtienes resultados perfectos de inmediato. ¡Buena suerte con tu proyecto!"
-          }
-        ]
-      }
-      setHistorial(prueba.conversacion)
-      
-      
+      setMensaje(data.message) */
+      setHistorial(
+
+        {
+          "conversacion": [
+            {
+              "consulta": "Hola, ¿cómo puedo entrenar un modelo de IA para reconocimiento de imágenes?"
+            },
+            {
+              "respuesta": "Para entrenar un modelo de IA para reconocimiento de imágenes, puedes seguir estos pasos:\n1. Recopilar un conjunto de datos de imágenes etiquetadas.\n2. Elegir una arquitectura de red neuronal convolucional (CNN).\n3. Preprocesar las imágenes.\n4. Dividir el conjunto de datos en entrenamiento y validación.\n5. Entrenar el modelo usando técnicas como transferencia de aprendizaje.\n6. Evaluar y ajustar el modelo según sea necesario."
+            },
+            {
+              "consulta": "¿Cuánto tiempo suele llevar el entrenamiento?"
+            },
+            {
+              "respuesta": "El tiempo de entrenamiento puede variar significativamente dependiendo de varios factores:\n- Tamaño y complejidad del conjunto de datos\n- Arquitectura del modelo elegido\n- Capacidad de procesamiento disponible (CPU/GPU)\n- Hiperparámetros seleccionados\n\nPuede llevar desde unas horas hasta varios días para conjuntos de datos grandes y modelos complejos. Es importante monitorear el progreso y usar técnicas como early stopping para optimizar el tiempo de entrenamiento."
+            },
+            {
+              "consulta": "¿Qué herramientas recomiendas para este tipo de proyecto?"
+            },
+            {
+              "respuesta": "Para proyectos de reconocimiento de imágenes, recomiendo las siguientes herramientas:\n1. TensorFlow o PyTorch como frameworks de aprendizaje profundo\n2. Keras para una API de alto nivel si usas TensorFlow\n3. OpenCV para preprocesamiento de imágenes\n4. Numpy para manipulación de datos\n5. Matplotlib o Seaborn para visualización\n6. Scikit-learn para métricas de evaluación\n7. Google Colab o Kaggle Notebooks si necesitas GPU gratuita en la nube\n8. MLflow para seguimiento de experimentos\n\nEstas herramientas te proporcionarán un ecosistema robusto para desarrollar y entrenar tu modelo de reconocimiento de imágenes."
+            },
+            {
+              "consulta": "Gracias por la información. ¿Algún consejo final?"
+            },
+            {
+              "respuesta": "Por supuesto, aquí tienes algunos consejos finales:\n1. Comienza con un conjunto de datos pequeño para iterar rápidamente.\n2. Utiliza aumento de datos para mejorar la generalización del modelo.\n3. Experimenta con diferentes arquitecturas y compara sus rendimientos.\n4. Presta atención a la calidad de tus datos, la limpieza es crucial.\n5. Utiliza técnicas de regularización para prevenir el sobreajuste.\n6. Mantén un registro detallado de tus experimentos y resultados.\n7. No subestimes la importancia de una buena visualización de resultados.\n8. Considera el uso de modelos pre-entrenados para acelerar el desarrollo.\n\nRecuerda que el aprendizaje automático es un proceso iterativo, así que no te desanimes si no obtienes resultados perfectos de inmediato. ¡Buena suerte con tu proyecto!"
+            }
+          ]
+        }
+      )
 
     } catch (error) {
       console.error('Error al enviar la petición:', error);
