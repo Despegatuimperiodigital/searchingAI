@@ -339,12 +339,8 @@ const SearchBar = () => {
   const mostFrequentWord = getMostFrequent(statistics.wordFrequency);
   const mostFrequentPhrase = getMostFrequent(statistics.phraseFrequency);
 
- 
-
- 
 
   return (
-    <Router> {/* Envolver con Router */}
       <Routes> {/* Envolver con Routes */}
         <Route path="/statistics" element={<Statistics statistics={statistics} />} /> {/* Ruta para estadísticas */}
         <Route path="/" element={(
@@ -458,7 +454,7 @@ const SearchBar = () => {
 
         )} />
       </Routes>
-    </Router>
+
   );
 }
 export default SearchBar;
