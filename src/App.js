@@ -8,6 +8,8 @@ import HostingComponent from './components/hostingcomponent';
 import ResultsBox from './components/searching/caja_resultados';
 import Login from './components/Usuario/login';
 import Register from './components/Usuario/register';
+import ListadoContactos from './components/contactos/listado_contactos';
+import ListadoPropiedades from './components/propiedades/listado_propiedades';
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/listadoprop" element={<ListadoPropiedades />} />
+          <Route path="/listadocont" element={<ListadoContactos />} />
           <Route path="/" element={<SearchBar />} />
         </Routes>
       </div>
