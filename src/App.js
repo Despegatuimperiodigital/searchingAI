@@ -12,6 +12,8 @@ import ListadoContactos from './components/contactos/listado_contactos';
 import ListadoPropiedades from './components/propiedades/listado_propiedades';
 import DetallesContacto from './components/contactos/detalles_contacto';
 import DetallesPropiedad from './components/propiedades/detalles_propiedad';
+import FormularioContacto from './components/contactos/formulario_contacto';
+import FormularioPropiedad from './components/propiedades/formulario_propiedad';
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
           <Route path="/listadocont" element={<ListadoContactos />} />
           <Route path="/detallescont" element={<DetallesContacto />} />
           <Route path="/detallesprop" element={<DetallesPropiedad />} />
+          <Route path="/formulariocont" element={<FormularioContacto />} />
+          <Route path="/formularioprop" element={<FormularioPropiedad />} />
           <Route path="/" element={<SearchBar />} />
         </Routes>
       </div>

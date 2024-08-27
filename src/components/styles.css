@@ -57,10 +57,12 @@
     font-family: "IBM Plex Sans", sans-serif;
     font-size: 16px;
     transition: background-color 0.3s ease;
+    transition: transform 0.3s ease, background 0.3s ease;
 }
 
 .view-button:hover {
     background-color: rgba(0, 0, 0, 1);
+    transform: scale(1.05); /* Zoom al hacer hover */
 }
 
 /* Estilo para el contenedor del botón */
@@ -68,4 +70,56 @@
     display: flex;
     justify-content: center;
     margin-top: 20px;
+}
+
+/* Estilos para el contenedor del formulario */
+.form-container {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Estilos para el título del formulario */
+.form-heading {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-weight: 300;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+}
+
+/* Estilos para los campos del formulario */
+.field-container {
+    margin-bottom: 15px;
+}
+
+.field-container input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+}
+
+.field-label {
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input:focus {
+    border-color: #007bff;
+    outline: none;
 }

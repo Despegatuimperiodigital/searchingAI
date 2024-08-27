@@ -1,14 +1,24 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import '.././styles.css';
+// src/pages/ListadoContactos.js
+import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import '../styles.css';
+import { Link } from 'react-router-dom';
 
 const ListadoContactos = () => {
-    const [contacts] = useState([
+    const [contacts, setContacts] = useState([
         { name: "Juan Pérez", email: "juan.perez@gmail.com", phone: "9 5656 2356" },
         { name: "Ana Gómez", email: "ana.gomez@gmail.com", phone: "9 4585 2456" }
     ]);
 
+    const location = useLocation();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        // Check if there's a new contact passed via state
+        if (location.state && location.state.newContact) {
+            setContacts([...contacts, location.state.newContact]);
+        }
+    }, [location.state]);
 
     const handleViewClick = (contact) => {
         navigate('/detallescont', { state: { contact } });
@@ -33,8 +43,8 @@ const ListadoContactos = () => {
                             <td>{contact.email}</td>
                             <td>{contact.phone}</td>
                             <td>
-                                <button 
-                                    className="view-button" 
+                                <button
+                                    className="view-button"
                                     onClick={() => handleViewClick(contact)}
                                 >
                                     Ver
@@ -44,6 +54,9 @@ const ListadoContactos = () => {
                     ))}
                 </tbody>
             </table>
+            <div className="button-container">
+                <Link to="/formulariocont" className="view-button">Agregar Nuevo Contacto</Link>
+            </div>
         </div>
     );
 };
