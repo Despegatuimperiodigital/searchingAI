@@ -44,3 +44,28 @@
 .table thead {
     background-color: rgba(0, 0, 0, 0.8);
 }
+
+/* Estilo para el botón Ver/Volver Atrás */
+.view-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.view-button:hover {
+    background-color: rgba(0, 0, 0, 1);
+}
+
+/* Estilo para el contenedor del botón */
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}

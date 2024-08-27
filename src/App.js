@@ -10,6 +10,8 @@ import Login from './components/Usuario/login';
 import Register from './components/Usuario/register';
 import ListadoContactos from './components/contactos/listado_contactos';
 import ListadoPropiedades from './components/propiedades/listado_propiedades';
+import DetallesContacto from './components/contactos/detalles_contacto';
+import DetallesPropiedad from './components/propiedades/detalles_propiedad';
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/listadoprop" element={<ListadoPropiedades />} />
           <Route path="/listadocont" element={<ListadoContactos />} />
+          <Route path="/detallescont" element={<DetallesContacto />} />
+          <Route path="/detallesprop" element={<DetallesPropiedad />} />
           <Route path="/" element={<SearchBar />} />
         </Routes>
       </div>
