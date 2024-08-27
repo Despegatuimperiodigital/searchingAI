@@ -1,8 +1,7 @@
 // src/pages/ListadoContactos.js
 import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import '../styles.css';
-import { Link } from 'react-router-dom';
 
 const ListadoContactos = () => {
     const [contacts, setContacts] = useState([
@@ -14,7 +13,6 @@ const ListadoContactos = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Check if there's a new contact passed via state
         if (location.state && location.state.newContact) {
             setContacts([...contacts, location.state.newContact]);
         }

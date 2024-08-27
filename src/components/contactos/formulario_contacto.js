@@ -15,8 +15,6 @@ const FormularioContacto = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         if (newContact.name && newContact.email && newContact.phone) {
-            // Assuming you have a way to add the contact (e.g., an API call or state management)
-            // Here we just redirect with the contact as state
             navigate('/listadocont', { state: { newContact } });
         }
     };
