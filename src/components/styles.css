@@ -1,4 +1,111 @@
-/* Estilos para el contenedor de la tabla */
+.property-table {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .property-table h2 {
+    font-size: 24px;
+    font-weight: 700;
+    text-align: left;
+    margin-bottom: 20px;
+    color: #000;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  table th, table td {
+    padding: 16px 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  table th {
+    font-weight: 500;
+    text-transform: capitalize;
+    color: #666;
+  }
+  
+  table th svg {
+    margin-left: 5px;
+    font-size: 12px;
+    color: #bbb;
+    vertical-align: middle;
+  }
+  
+  table tbody tr td strong {
+    font-weight: 600;
+  }
+  
+  table tbody tr:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .status {
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+    display: inline-block;
+    text-align: center;
+  }
+  
+  .status.forsale {
+    background-color: #000;
+    color: white;
+  }
+  
+  .status.sold {
+    background-color: #fff;
+    border: 2px solid #ccc;
+    color: #000;
+  }
+  
+  .status.pending {
+    background-color: #f3f3f3;
+    border: 2px solid #bbb;
+    color: #666;
+  }
+  
+  .icon-button {
+    background: none;
+    border: none;
+    color: #333; 
+    cursor: pointer;
+    font-size: 18px; 
+    margin-right: 8px; 
+  }
+  
+  .edit-icon {
+    background: none;
+    border: none;
+    color: #333; 
+    cursor: pointer;
+    font-size: 18px; 
+  }
+  
+  .icon-button:hover {
+    color: #007bff;
+  }
+  
+  .icon-button + .icon-button {
+    margin-left: 8px; 
+  }
+  
+  
+  .edit-icon:hover {
+    color: #007bff;
+  }
+  
+  /* Estilos para el contenedor de la tabla */
 .table-container {
     background-color: rgba(0, 0, 0, 0.6);
     padding: 40px;
