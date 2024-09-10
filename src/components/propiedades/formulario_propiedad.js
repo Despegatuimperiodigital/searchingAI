@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles.css';
 
 const FormularioPropiedad = () => {
     const [formData, setFormData] = useState({
         propertyName: '',
         propertyAddress: '', 
-        customFields: [{ name: 'Baños', type: 'text' }, { name: 'Superficie', type: 'text' }],
+        customFields: [
+            { name: 'Baños', type: 'text', value: '' },
+            { name: 'Superficie', type: 'text', value: '' }
+        ],
         newFieldName: '',
         newFieldType: 'text',
     });
+
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setFormData({
@@ -19,7 +25,7 @@ const FormularioPropiedad = () => {
 
     const handleCustomFieldChange = (index, e) => {
         const updatedFields = [...formData.customFields];
-        updatedFields[index][e.target.name] = e.target.value;
+        updatedFields[index].value = e.target.value; 
         setFormData({ ...formData, customFields: updatedFields });
     };
 
@@ -27,7 +33,10 @@ const FormularioPropiedad = () => {
         if (formData.newFieldName) {
             setFormData({
                 ...formData,
-                customFields: [...formData.customFields, { name: formData.newFieldName, type: formData.newFieldType }],
+                customFields: [
+                    ...formData.customFields, 
+                    { name: formData.newFieldName, type: formData.newFieldType, value: '' }
+                ],
                 newFieldName: '',
                 newFieldType: 'text',
             });
@@ -44,14 +53,20 @@ const FormularioPropiedad = () => {
         console.log('Datos propiedad:', formData);
     };
 
+    const handleBackClick = () => {
+        navigate('/listadoprop');
+    };
+
     return (
         <div className="create-table">
             <form className="property-form" onSubmit={handleSubmit}>
                 <h2 style={{ textAlign: 'left' }}>Agregar Nueva Propiedad</h2>
-                <p style={{ color: '#666', textAlign: 'left' }}>Ingrese los detalles de la propiedad y agregue campos personalizados según sea necesario.</p>
+                <p style={{ color: '#666', textAlign: 'left' }}>
+                    Ingrese los detalles de la propiedad y agregue campos personalizados según sea necesario.
+                </p>
 
                 <div className="form-group">
-                    <label style={{ color: 'black', fontWeight: 'bold'  }}>Nombre Propiedad</label>
+                    <label style={{ color: 'black', fontWeight: 'bold' }}>Nombre Propiedad</label>
                     <input
                         type="text"
                         name="propertyName"
@@ -63,7 +78,7 @@ const FormularioPropiedad = () => {
                 </div>
 
                 <div className="form-group">
-                    <label style={{ color: 'black', fontWeight: 'bold'  }}>Dirección Propiedad</label>
+                    <label style={{ color: 'black', fontWeight: 'bold' }}>Dirección Propiedad</label>
                     <input
                         type="text"
                         name="propertyAddress"
@@ -75,13 +90,14 @@ const FormularioPropiedad = () => {
                 </div>
 
                 <div className="form-group">
-                    <label style={{ color: 'black', fontWeight: 'bold'}}>Campos Personalizados</label>
+                    <label style={{ color: 'black', fontWeight: 'bold' }}>Campos Personalizados</label>
                     {formData.customFields.map((field, index) => (
                         <div key={index} className="custom-field-row">
                             <input
                                 style={{ color: 'black' }}
-                                type="text"
-                                value={field.name}
+                                type={field.type}
+                                value={field.value} // El valor ingresado
+                                placeholder={field.name} // Usa el nombre como placeholder
                                 onChange={(e) => handleCustomFieldChange(index, e)}
                                 className="form-control"
                             />
@@ -97,7 +113,7 @@ const FormularioPropiedad = () => {
                 </div>
 
                 <div className="form-group new-field">
-                    <label style={{ color: 'black', fontWeight: 'bold'  }}>Agregar Nuevo Campo</label>
+                    <label style={{ color: 'black', fontWeight: 'bold' }}>Agregar Nuevo Campo</label>
                     <div className="new-field-row">
                         <input
                             type="text"
@@ -111,7 +127,7 @@ const FormularioPropiedad = () => {
                             name="newFieldType"
                             value={formData.newFieldType}
                             onChange={handleChange}
-                            className="form-control"
+                            className="form-control max-width"
                         >
                             <option value="text">Texto</option>
                             <option value="number">Número</option>
@@ -125,7 +141,9 @@ const FormularioPropiedad = () => {
                         </button>
                     </div>
                 </div>
-
+                <button onClick={handleBackClick} className="save-button">
+                        Volver Atrás
+                    </button>
                 <button className="save-button" type="submit">
                     Guardar Propiedad
                 </button>

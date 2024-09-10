@@ -1,26 +1,29 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import '../styles.css';
 import { FaEdit, FaEye, FaSortUp, FaSortDown, FaTrash } from 'react-icons/fa';
 
 const ListadoPropiedades = () => {
     const navigate = useNavigate();
+    const location = useLocation();
     
     const [sortConfig, setSortConfig] = useState({ key: 'address', direction: 'ascending' });
     const [properties, setProperties] = useState([
-        { id: 1, address: '123 Main St', city: 'New York', price: '$500,000', status: 'For Sale', rooms: 2, baths: 3, area: '1500 ft²' },
-        { id: 2, address: '456 Elm St', city: 'Los Angeles', price: '$750,000', status: 'Pending', rooms: 4, baths: 3, area: '2000 ft²' },
-        { id: 3, address: '789 Oak Ave', city: 'Chicago', price: '$400,000', status: 'Sold', rooms: 2, baths: 1, area: '1200 ft²' },
-        { id: 4, address: '101 Pine Rd', city: 'Miami', price: '$600,000', status: 'For Sale', rooms: 3, baths: 2, area: '1800 ft²' },
-        { id: 5, address: '202 Maple Dr', city: 'Seattle', price: '$550,000', status: 'For Sale', rooms: 3, baths: 2, area: '1600 ft²' }
+        { id: 1, address: 'Av. Libertador 1234', city: 'Santiago', price: '2.000 UF', status: 'En venta', rooms: 2, baths: 3, area: '1500 m²' },
+        { id: 2, address: 'Av. Sunset 789', city: 'Los Angeles', price: '1.500 UF', status: 'Pendiente', rooms: 4, baths: 3, area: '2000 m²' },
+        { id: 3, address: 'Calle Colón 789', city: 'Concepción', price: '900 UF', status: 'Vendida', rooms: 2, baths: 1, area: '1200 m²' },
+        { id: 4, address: 'Av. Perú 345', city: 'Viña del Mar', price: '1.150 UF', status: 'En venta', rooms: 3, baths: 2, area: '1800 m²' },
+        { id: 5, address: 'Av. San Miguel 456', city: 'Talca', price: '2.900 UF', status: 'En venta', rooms: 3, baths: 2, area: '1600 m²' }
     ]);
+
+    const isEditMode = location.state?.editMode ?? false;
 
     const handleViewClick = (property) => {
         navigate('/detallesprop', { state: { property } });
     };
 
     const handleEditClick = (property) => {
-        navigate('/editarprop', { state: { property } });
+        navigate('/detallesprop', { state: { property, editMode: true } });
     };
 
     const handleDeleteClick = (propertyId) => {
@@ -36,11 +39,25 @@ const ListadoPropiedades = () => {
         setSortConfig({ key, direction });
     };
 
+    const handleStatusChange = (propertyId, newStatus) => {
+        const updatedProperties = properties.map(property =>
+            property.id === propertyId ? { ...property, status: newStatus } : property
+        );
+        setProperties(updatedProperties);
+    };
+
     const sortedProperties = [...properties].sort((a, b) => {
-        if (a[sortConfig.key] < b[sortConfig.key]) {
+        const aValue = sortConfig.key === 'price' || sortConfig.key === 'area'
+            ? parseFloat(a[sortConfig.key].replace(/[^\d.-]/g, ''))
+            : a[sortConfig.key];
+        const bValue = sortConfig.key === 'price' || sortConfig.key === 'area'
+            ? parseFloat(b[sortConfig.key].replace(/[^\d.-]/g, ''))
+            : b[sortConfig.key];
+
+        if (aValue < bValue) {
             return sortConfig.direction === 'ascending' ? -1 : 1;
         }
-        if (a[sortConfig.key] > b[sortConfig.key]) {
+        if (aValue > bValue) {
             return sortConfig.direction === 'ascending' ? 1 : -1;
         }
         return 0;
@@ -87,15 +104,26 @@ const ListadoPropiedades = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {sortedProperties.map((property, index) => (
-                        <tr key={index}>
+                    {sortedProperties.map((property) => (
+                        <tr key={property.id}>
                             <td><strong>{property.address}</strong></td>
                             <td>{property.city}</td>
                             <td>{property.price}</td>
                             <td>
-                                <span className={`status ${property.status.replace(' ', '').toLowerCase()}`}>
-                                    {property.status}
-                                </span>
+                                {isEditMode ? (
+                                    <select
+                                        value={property.status}
+                                        onChange={(e) => handleStatusChange(property.id, e.target.value)}
+                                    >
+                                        <option value="En venta">En venta</option>
+                                        <option value="Pendiente">Pendiente</option>
+                                        <option value="Vendida">Vendida</option>
+                                    </select>
+                                ) : (
+                                    <span className={`status ${property.status.replace(' ', '').toLowerCase()}`}>
+                                        {property.status}
+                                    </span>
+                                )}
                             </td>
                             <td>{property.rooms}</td>
                             <td>{property.baths}</td>
