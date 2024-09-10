@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import '.././styles.css'; 
+import '../styles.css';
 
 const DetallesPropiedad = () => {
     const location = useLocation();
@@ -8,7 +8,7 @@ const DetallesPropiedad = () => {
     const { property } = location.state || {};
 
     const handleBackClick = () => {
-        navigate(-1); // Navega a la página anterior
+        navigate(-1); 
     };
 
     if (!property) {
@@ -16,33 +16,41 @@ const DetallesPropiedad = () => {
     }
 
     return (
-        <div className="table-container">
-            <h2 className="table-heading">Detalles de Propiedad</h2>
-            <table className="table">
+        <div className="property-table">
+            <h2>Detalles de Propiedad</h2>
+            <table>
                 <tbody>
                     <tr>
-                        <th>Nombre</th>
-                        <td>{property.name}</td>
+                        <th>Dirección</th>
+                        <td>{property.address}</td>
                     </tr>
                     <tr>
-                        <th>Ubicación</th>
-                        <td>{property.location}</td>
+                        <th>Ciudad</th>
+                        <td>{property.city}</td>
                     </tr>
                     <tr>
-                        <th>M2</th>
-                        <td>{property.m2}</td>
+                        <th>Precio</th>
+                        <td>{property.price}</td>
                     </tr>
                     <tr>
-                        <th>Dormitorios</th>
-                        <td>{property.bedrooms}</td>
+                        <th>Estado</th>
+                        <td>
+                            <span className={`status ${property.status.replace(' ', '').toLowerCase()}`}>
+                                {property.status}
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Habitaciones</th>
+                        <td>{property.rooms}</td>
                     </tr>
                     <tr>
                         <th>Baños</th>
-                        <td>{property.bathrooms}</td>
+                        <td>{property.baths}</td>
                     </tr>
                     <tr>
-                        <th>Valor UF</th>
-                        <td>{property.price}</td>
+                        <th>Superficie</th>
+                        <td>{property.area}</td>
                     </tr>
                 </tbody>
             </table>

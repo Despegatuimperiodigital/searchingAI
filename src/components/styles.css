@@ -6,106 +6,114 @@
     background-color: #fff;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .property-table h2 {
+}
+
+.property-table h2 {
     font-size: 24px;
     font-weight: 700;
-    text-align: left;
     margin-bottom: 20px;
     color: #000;
-  }
-  
-  table {
+}
+
+.create-table {
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    padding: 25px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.create-table h2 {
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+table {
     width: 100%;
     border-collapse: collapse;
-  }
-  
-  table th, table td {
+}
+
+table th,
+table td {
     padding: 16px 12px;
     text-align: left;
     border-bottom: 1px solid #ddd;
     font-size: 16px;
     color: #333;
-  }
-  
-  table th {
+}
+
+table th {
     font-weight: 500;
     text-transform: capitalize;
     color: #666;
-  }
-  
-  table th svg {
+}
+
+table th svg {
     margin-left: 5px;
     font-size: 12px;
     color: #bbb;
     vertical-align: middle;
-  }
-  
-  table tbody tr td strong {
+}
+
+table tbody tr td strong {
     font-weight: 600;
-  }
-  
-  table tbody tr:hover {
+}
+
+table tbody tr:hover {
     background-color: #f9f9f9;
-  }
-  
-  .status {
+}
+
+.status {
     padding: 8px 12px;
     border-radius: 20px;
     font-weight: bold;
     display: inline-block;
     text-align: center;
-  }
-  
-  .status.forsale {
+}
+
+.status.forsale {
     background-color: #000;
     color: white;
-  }
-  
-  .status.sold {
+}
+
+.status.sold {
     background-color: #fff;
     border: 2px solid #ccc;
     color: #000;
-  }
-  
-  .status.pending {
+}
+
+.status.pending {
     background-color: #f3f3f3;
     border: 2px solid #bbb;
     color: #666;
-  }
-  
-  .icon-button {
+}
+
+.icon-button {
     background: none;
     border: none;
-    color: #333; 
+    color: #333;
     cursor: pointer;
-    font-size: 18px; 
-    margin-right: 8px; 
-  }
-  
-  .edit-icon {
-    background: none;
-    border: none;
-    color: #333; 
-    cursor: pointer;
-    font-size: 18px; 
-  }
-  
-  .icon-button:hover {
+    font-size: 18px;
+    margin-right: 8px;
+}
+
+.icon-button:hover {
     color: #007bff;
-  }
-  
-  .icon-button + .icon-button {
-    margin-left: 8px; 
-  }
-  
-  
-  .edit-icon:hover {
+}
+
+.icon-button+.icon-button {
+    margin-left: 8px;
+}
+
+
+.edit-icon:hover {
     color: #007bff;
-  }
-  
-  /* Estilos para el contenedor de la tabla */
+}
+
+/* Estilos para el contenedor de la tabla */
 .table-container {
     background-color: rgba(0, 0, 0, 0.6);
     padding: 40px;
@@ -232,10 +240,95 @@ input {
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    max-width: 300px;
+  
 }
 
 input:focus {
     border-color: #007bff;
     outline: none;
+}
+
+select {
+    max-width: 100px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: "IBM Plex Sans", sans-serif;
+}
+
+.remove-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.property-form h2 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box; 
+}
+
+.property-form {
+    width: 100%;
+}
+
+.form-group {
+    max-width: 450px;
+    margin-bottom: 15px;
+}
+
+.new-field-row {
+    display: flex;
+    align-items: center;
+}
+
+.new-field-row input,
+.new-field-row select
+ {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.custom-field-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.custom-field-row input {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.add-btn {
+    max-width: 100px;
+    padding: 11px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 4px;
+    font-family: "IBM Plex Sans", sans-serif;
+}
+
+.save-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 16px;
+    width: 100%;
 }

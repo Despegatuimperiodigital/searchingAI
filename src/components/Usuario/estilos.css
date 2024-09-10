@@ -40,24 +40,12 @@ label {
     font-weight: 300;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 1px;
-    background: transparent; 
-    font-size: 16px;
-    margin-bottom: 10px;
-    box-sizing: border-box;
-    height: 35px; 
-    border: 1px solid rgba(255, 255, 255, 0.5); 
-    color: white; 
-    outline: none;
+input {
+    font-family: "IBM Plex Sans", sans-serif;
+
 }
 
-button[type="submit"] {
+.button1 {
     width: 100%;
     padding: 10px;
     border: none;
@@ -75,7 +63,7 @@ button[type="submit"] {
     justify-content: center; 
 }
 
-button[type="submit"]:hover {
+.button1:hover {
     transform: scale(1.05); /* Zoom al hacer hover */
 }
 
